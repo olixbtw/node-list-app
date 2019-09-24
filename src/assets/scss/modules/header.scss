@@ -1,0 +1,9 @@
+// header style
+header {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+.header-main {
+  background: $light-color;
+}
