@@ -1,0 +1,5 @@
+const moment = require('moment')
+let now = moment().format("ddd Do MMMM YYYY")
+console.log(now)
+console.log(moment().set(now) + 0)
+console.log(moment().set(now) + 10)

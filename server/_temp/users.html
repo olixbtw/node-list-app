@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>Application</h1>
+  <input id="name" type="text">
+  <button onclick="addUser()">Add user</button>
+  <br>
+  <h3>Names:</h3>
+  <div id="text"></div>
+
+  <script>
+    window.onload = () => {
+      fetchUsers_updateData_drawList()
+    }
+
+    const addUser = () => {
+      for (let i = 1; i < 10; i++)
+        if (userList.filter(user => user.id === i).length === 0) {
+          if (document.getElementById('name').value) {
+
+            var reqv = new XMLHttpRequest();
+            reqv.open(
+              'POST',
+              '/api/users/new/' + i + '/' + document.getElementById('name').value,
+              true
+            )
+            reqv.send()
+            fetchUsers_updateData_drawList()
+          } else { console.log('No name entered') }
+          break;
+        }
+    }
+
+    const removeUser = (n) => {
+      var reqv = new XMLHttpRequest();
+      reqv.open(
+        'DELETE',
+        '/api/users/' + n,
+        true
+      )
+      reqv.send()
+      fetchUsers_updateData_drawList()
+    }
+
+    const fetchUsers_updateData_drawList = () => {
+      fetch('api/users')
+        .then(res => res.json())
+        .then(data => {
+          userList = data;//bad practice. change it
+          document.getElementById('text').innerHTML = createList(data);
+        })
+        .catch(err => console.log(err))
+    }
+
+    const createList = (users) => {
+      return users.map(user => `<button onclick="removeUser(${user.id})">x</button> - Name: ${user.name}. Id: ${user.id}. <br>`).join('')
+    }
+
+  </script>
+</body>
+
+</html>

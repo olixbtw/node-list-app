@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>app</title>
+</head>
+
+<body>
+  MY STATIC APP
+  <h1>JWT</h1>
+  <div id='response'></div>
+
+  <button id="authentication">Get token</button>
+  <button id="shared">Get Shared</button>
+  <button id="protected">Get Protected</button>
+
+  <div id="users_dom"></div>
+
+  <script>
+    const authBtn = document.getElementById('authentication');
+    const sharedBtn = document.getElementById('shared');
+    const protectedBtn = document.getElementById('protected');
+
+
+    authBtn.addEventListener('click', () => {
+      const username = prompt('Enter your username', 'username');
+      const password = prompt('Enter your password', 'password');
+
+      fetch('/token', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: username,
+          password: password
+        })
+      }).then(resp => resp.json())
+        .then(data => {
+          localStorage.setItem("token", data);
+          alert('Token' + data);
+        })
+    });
+
+    sharedBtn.addEventListener('click', () => {
+      fetch('/shared')
+        .then(resp => resp.json())
+        .then(data => response.innerHTML = '' + data)
+    })
+
+    protectedBtn.addEventListener('click', () => {
+      fetch('/protected', {
+        headers: {
+          'authorization': localStorage.getItem("token")
+        }
+      })
+        .then(resp => resp.json())
+        .then(data => {
+          console.log(data);
+          response.innerHTML = '' + data.name + ' is logged in'
+        })
+    });
+
+  </script>
+</body>
+
+</html>
