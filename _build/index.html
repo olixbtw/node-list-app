@@ -1,12 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>List Application</title>
 </head>
+
 <body>
-  <h1>Index page</h1>
+  <h1>ToDo List</h1>
+  <ul>
+    <li>User can delete his account, view account info, update account info when logged in</li>
+    <li>User can see other users in system and their notes count</li>
+    <li>User can see only personal notes</li>
+    <li>User can create, view, update, delete personal notes</li>
+    <li>User can manage personal notes only when logged in</li>
+    <li>User can see total number of personal notes</li>
+  </ul>
+
+  <button onclick="getUsers()">get users</button>
+  <br>
+  <hr>
+  <br>
+
+
+  <input id="login_name" type="text" placeholder="name">
+  <br>
+  <input id="login_pass" type="password" placeholder="password">
+  <br>
+  <button onclick="logIn()">Login</button>
+  <button onclick="addUser()">Add User</button>
+
+  <div class="userpage">
+    <div id="loginStatus"></div>
+    <div class=logged>
+      <h3>Account info:</h3>
+      login <br>
+      notes count <br>
+      password <br>
+
+      <button onclick="deleteUser()">Delete User</button>
+    </div>
+  </div>
+
+  <script>
+    const addUser = () => {
+      let user = getNames();
+      fetch('/api/users', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          username: user.username,
+          password: user.password
+        })
+      })
+        .then(res => res.json())
+        .then(data => { console.log(data) })
+        .catch(err => { console.log(err) })
+    }
+
+    const logIn = () => {
+      let user = getNames();
+
+      let query = '?'
+      query += 'username=' + user.username + '&'
+      query += 'password=' + user.password + '&'
+
+      fetch('/api/login' + query)
+        .then(res => res.json())
+        .then(data => { console.log(data) })
+        .catch(err => { console.log(err) })
+    }
+
+    const getUsers = () => {
+      fetch('/api/users')
+        .then(res => res.json())
+        .then(data => {
+          console.log(data)
+        })
+    }
+
+    const setStatus = () => {
+
+    }
+
+    statusBlock = document.getElementById('loginStatus')
+    const getNames = () => {
+      return {
+        username: document.getElementById('login_name').value,
+        password: document.getElementById('login_pass').value
+      }
+    }
+  </script>
+
+  <style>
+    .logged {
+      display: inline-block;
+      padding: 20px;
+      border: 1px solid black;
+      margin-top: 20px;
+    }
+  </style>
+
+  <br>
+  <br>
+  <hr>
+  <br>
+
+  <ul>
+    <li>User is able to register account in the system</li>
+    <li>User is able to login into the system</li>
+  </ul>
+
 </body>
+
 </html>
