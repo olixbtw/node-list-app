@@ -5,4 +5,3 @@ const getNames = () => {
     password: document.getElementById('login_pass').value
   }
 }
-
