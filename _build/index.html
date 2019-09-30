@@ -15,22 +15,23 @@
     <input id="login_name" type="text" placeholder="name">
     <input id="login_pass" type="password" placeholder="password">
 
-    <button onclick="logIn()">Login</button>
+    <button onclick="authorize()">Login</button>
     <button onclick="addUser()">Add User</button>
+
+    <div id="login-tab_prompt" class="prompt"></div>
   </div>
 
   <div class="logged_info-tab">
     <h3>Account info:</h3>
-    <div id="loginStatus"></div>
-    login
-    <br>
-    notes count
-    <br>
-    password
-    <br>
+
+    <div id="loginData">DATA HERE</div>
 
     <button onclick="deleteUser()">Delete User</button>
+    <button onclick="logOut()">LogOut</button>
   </div>
+
+  <br>
+  <br>
 
   <div class="new_task-tab">
     <textarea id="taskText" cols="30" rows="10"></textarea>
@@ -55,14 +56,18 @@
   <hr>
   <hr>
 
-  <button onclick="getAllUsers()" style="background: yellow;">Get Users</button>
-  <button onclick="getAllTasks()" style="background: yellow;">Get all tasks</button>
-
   <button onclick="getCurrentTasks()">Get Tasks of current user</button>
 
   <br>
+
+  <button onclick="getAllUsers()" style="background: yellow;">Get all Users</button>
+  <button onclick="getAllTasks()" style="background: yellow;">Get all Tasks</button>
+
+  <br>
+
   <button onclick="deleteAllUsers()" style="background: red;">Remove All Users</button>
   <button onclick="deleteAllTasks()" style="background: red;">Remove All Tasks</button>
+
   <ul>
     <li class=done>User is able to register account in the system</li>
     <li class=done>User is able to login into the system</li>
@@ -78,10 +83,10 @@
 
   <!-- bundle later -->
   <script src="scripts/login.js"></script>
-  <script src="scripts/draw.js"></script>
+  <script src="scripts/data.save.js"></script>
+  <script src="scripts/data.draw.js"></script>
   <script src="scripts/users.js"></script>
   <script src="scripts/tasks.js"></script>
-
   <script src="scripts/_test.js"></script>
   <script src="scripts/_service.js"></script>
   <!-- bundle later -->

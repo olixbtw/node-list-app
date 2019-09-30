@@ -1,18 +1,35 @@
-const logIn = () => {
+const authorize = async () => {
   let user = getNames();
 
   let query = '?'
   query += 'username=' + user.username + '&'
   query += 'password=' + user.password + '&'
 
-  fetch('/api/login' + query)
+  return await fetch('/api/login' + query)
     .then(res => {
       if (res.status === 401)
         return false
       return res.json()
     })
-    .then(token => { token ? setToken(token) : removeToken() })
+    .then(token => {
+      if (token) {
+        setToken(token)
+        logIn()
+      }
+      else {
+        logOut()
+      }
+    })
     .catch(err => { console.log(err) })
+}
+
+const logIn = () => {
+  document.body.setAttribute('class', 'loggedIn');
+}
+
+const logOut = () => {
+  document.body.removeAttribute('class');
+  removeToken()
 }
 
 const setToken = (data) => {
@@ -25,4 +42,8 @@ const getToken = () => {
 
 const removeToken = () => {
   return localStorage.removeItem("token")
+}
+
+window.onload = () => {
+  if (getToken()) logIn()
 }

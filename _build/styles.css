@@ -6,11 +6,26 @@
 .new_task-tab,
 .logged_list-tab,
 .logged_info-tab {
-  display: inline-block;
+  /* display: inline-block; */
+  display: none;
   vertical-align: top;
   margin-right: 20px;
   padding: 20px;
   border: 1px solid black;
+}
+
+.login-tab{
+  display: inline-block;
+}
+
+body.loggedIn .new_task-tab,
+body.loggedIn .logged_list-tab,
+body.loggedIn .logged_info-tab {
+  display: inline-block;
+}
+
+body.loggedIn .login-tab {
+  display: none;
 }
 
 input,
