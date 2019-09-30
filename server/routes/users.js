@@ -41,8 +41,8 @@ router.delete('/users', (req, res) => {
     res.send('No such user')
 })
 
+//service - delete all users
 router.delete('/users/clear', (req, res) => {
-  //delete user's tasks
   Users.removeAllUsers()
     .then(data => res.json(data))
     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });

@@ -1,4 +1,3 @@
-
 const addTask = () => {
   let taskText = document.getElementById('taskText').value
   fetch('/api/tasks', {
@@ -16,23 +15,21 @@ const addTask = () => {
     .catch(err => { console.log(err) })
 }
 
-const getTasks = () => {
+// const getTasksByToken = async (token) => {
+//   return await fetch('/api/tasks', {
+//     headers: { 'authorization': token }
+//   })
+//     .then(res => res.json())
+//     .then(data => { console.log('token tasks' + data); return data })
+//     .catch(err => { console.log(err) })
+// }
+
+
+const getCurrentTasks =  () => {
   fetch('/api/tasks', {
-    headers: {
-      'authorization': getToken()
-    }
+    headers: { 'authorization': getToken() }
   })
     .then(res => res.json())
-    .then(data => { console.log(data) })
-    .catch(err => { console.log(err) })
-}
-
-const removeAllTasks = () => {
-
-  fetch('/api/tasks/clear', {
-    method: 'DELETE'
-  })
-    .then(res => res.json())
-    .then(data => { console.log(data) })
+    .then(data => { console.log(data); return data })
     .catch(err => { console.log(err) })
 }

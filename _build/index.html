@@ -36,9 +36,9 @@
     <textarea id="taskText" cols="30" rows="10"></textarea>
     <button onclick="addTask()">Add Task</button>
   </div>
-  
+
   <div class="logged_list-tab">
-    <ul>
+    <ul id="task_list">
       <li>Item 1</li>
       <li>Item 2</li>
       <li class=done>Item 3</li>
@@ -55,14 +55,14 @@
   <hr>
   <hr>
 
-  <button onclick="test()">Test</button>
-  <button onclick="getUsers()">Get Users</button>
-  
-  <button onclick="getTasks()">Get Tasks</button>
-  
+  <button onclick="getAllUsers()" style="background: yellow;">Get Users</button>
+  <button onclick="getAllTasks()" style="background: yellow;">Get all tasks</button>
+
+  <button onclick="getCurrentTasks()">Get Tasks of current user</button>
+
   <br>
-  <button onclick="removeAllUsers()" style="background: red;">Remove All Users</button>
-  <button onclick="removeAllTasks()" style="background: red;">Remove All Tasks</button>
+  <button onclick="deleteAllUsers()" style="background: red;">Remove All Users</button>
+  <button onclick="deleteAllTasks()" style="background: red;">Remove All Tasks</button>
   <ul>
     <li class=done>User is able to register account in the system</li>
     <li class=done>User is able to login into the system</li>
@@ -75,15 +75,18 @@
   </ul>
 
   <link rel="stylesheet" href="styles.css">
-  <script src="scripts.js"></script>
 
   <!-- bundle later -->
-
   <script src="scripts/login.js"></script>
+  <script src="scripts/draw.js"></script>
   <script src="scripts/users.js"></script>
   <script src="scripts/tasks.js"></script>
 
   <script src="scripts/_test.js"></script>
+  <script src="scripts/_service.js"></script>
+  <!-- bundle later -->
+
+  <script src="scripts.js"></script>
 </body>
 
 </html>

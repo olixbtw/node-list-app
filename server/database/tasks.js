@@ -26,7 +26,8 @@ let listSchema = {
 let List = mongoose.model('List', listSchema);
 
 
-module.exports.getTasks = (filter) => List.find({ userId: filter }).exec();
+module.exports.getTasks = (filter) => List.find(filter).exec();
+// module.exports.getUserTasks = (filter) => List.find({ userId: filter }).exec();
 
 module.exports.removeAllTasks = (filter) => List.find(filter).deleteMany().exec();
 

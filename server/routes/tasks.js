@@ -5,16 +5,18 @@ let router = express.Router();
 let List = require('../database/tasks');
 
 router.get('/tasks', (req, res) => {
-  List.getTasks(req.user._id)
-    .then(users => { res.json(users) })
-    .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, users: {}, error_text: err.message }) });
+  if (req.user) {
+    // tasks for current user (if headers specified)
+    List.getTasks({ userId: req.user._id })
+      .then(users => { res.json(users) })
+      .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, users: {}, error_text: err.message }) });
+  } else {
+    //all tasks
+    List.getTasks()
+      .then(users => { res.json(users) })
+      .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, users: {}, error_text: err.message }) });
+  }
 });
-
-// router.get('/tasks/:id', (req, res) => {
-//   Users.getUserById(req.params.id)
-//     .then(user => { res.json(user) })
-//     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
-// });
 
 router.post('/tasks', (req, res) => {
   List.addTask(req.body.text, req.user)
@@ -22,6 +24,7 @@ router.post('/tasks', (req, res) => {
     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
 });
 
+//service - delete all tasks
 router.delete('/tasks/clear', (req, res) => {
   //delete user's tasks
   List.removeAllTasks()
