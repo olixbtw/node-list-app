@@ -24,10 +24,22 @@ const authorize = async () => {
 }
 
 const logIn = () => {
+  currentUser.logged = true;
+
+  getCurrentUserData(getToken()).then(data => {
+    getCurrentUserTasks(getToken()).then(tasks => {
+      currentUser.data = data;
+      currentUser.tasks = tasks;
+
+      dispalyData(data, tasks)
+    })
+  })
+
   document.body.setAttribute('class', 'loggedIn');
 }
 
 const logOut = () => {
+  currentUser.logged = false;
   document.body.removeAttribute('class');
   removeToken()
 }

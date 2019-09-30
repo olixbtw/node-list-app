@@ -15,7 +15,7 @@ const addTask = () => {
     .catch(err => { console.log(err) })
 }
 
-const getCurrentTasks =  () => {
+const getCurrentTasks = () => {
   fetch('/api/tasks', {
     headers: { 'authorization': getToken() }
   })
@@ -23,3 +23,16 @@ const getCurrentTasks =  () => {
     .then(data => { console.log(data); return data })
     .catch(err => { console.log(err) })
 }
+
+// const getCurrentTasks = (taskId) => {
+//   fetch('/api/task' + taskId, {
+//     method: "UPDATE",
+//     headers: { 'authorization': getToken() }
+//   })
+//     .then(res => res.json())
+//     .then(data => { console.log(data); return data })
+//     .catch(err => { console.log(err) })
+// }
+
+const completeItem = (data) => { console.log('complete - ' + data); }
+const deleteItem = (data) => { console.log('delete - ' + data); event.stopPropagation() }

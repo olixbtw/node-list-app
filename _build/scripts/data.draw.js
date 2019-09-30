@@ -1,31 +1,34 @@
 const clearData = () => {
-  document.getElementById('loginStatus').innerHTML = ''
+  console.log('clearData')
+  document.getElementById('loginData').innerHTML = ''
   document.getElementById('task_list').innerHTML = ''
 }
 
 const drawInfo = (userData) => {
-  document.getElementById('loginStatus').innerHTML += 'username  - ' + userData[username] + '<br>'
-  document.getElementById('loginStatus').innerHTML += 'password  - ' + userData[password] + '<br>'
-  document.getElementById('loginStatus').innerHTML += 'id  - ' + userData[_id] + '<br>'
-  document.getElementById('loginStatus').innerHTML += userTasks
+  document.getElementById('loginData').innerHTML += 'username  - ' + userData['username'] + '<br>'
+  document.getElementById('loginData').innerHTML += 'password  - ' + userData['password'] + '<br>'
+  document.getElementById('loginData').innerHTML += 'id  - ' + userData['_id'] + '<br>'
 }
 
 const drawList = (userList) => {
-  document.getElementById('task_list').innerHTML += '<ul>'
-  for (item in userList)
-    document.getElementById('task_list').innerHTML += `<li ${item.completed ? 'class=done' : ''}>${item.text}<button onclick='deleteItem(${item._id})'>Delete</button><span>${item.date}</span></li>`
-  document.getElementById('task_list').innerHTML += '</ul>'
-}
 
-const drawData = {
-  clear: clearData,
-  list: drawList,
-  info: drawInfo,
-}
+  let listString = ''
+  userList.forEach(item => {
+    console.log(item)
+    listString += `
+      <li ${item.completed ? 'class=done' : ''} onclick='completeItem("${item._id}")'>
+      <button onclick='deleteItem("${item._id}")'>Delete</button>
+      ${item.text}
+      <span class="date">${item.createdDate}</span>
+    </li>
+    `
+  });
 
+  document.getElementById('task_list').innerHTML = listString
+}
 
 const dispalyData = (data, list) => {
-  drawData.clear()
-  drawData.info(data)
-  drawData.list(list)
+  clearData()
+  drawInfo(data)
+  drawList(list)
 }

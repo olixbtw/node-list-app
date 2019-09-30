@@ -6,9 +6,15 @@ let Users = require('../database/users');
 let List = require('../database/tasks');
 
 router.get('/users', (req, res) => {
-  Users.getUsers()
-    .then(users => { res.json(users) })
-    .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, users: {}, error_text: err.message }) });
+  if (req.user) {
+    Users.getUserById(req.user._id)
+      .then(user => { res.json(user) })
+      .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
+  } else {
+    Users.getUsers()
+      .then(users => { res.json(users) })
+      .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, users: {}, error_text: err.message }) });
+  }
 });
 
 // router.get('/users/:id', (req, res) => {
