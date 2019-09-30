@@ -10,7 +10,51 @@
 
 <body>
   <h1>ToDo List</h1>
+
+  <div class="login-tab">
+    <input id="login_name" type="text" placeholder="name">
+    <input id="login_pass" type="password" placeholder="password">
+    
+    <button onclick="logIn()">Login</button>
+    <button onclick="addUser()">Add User</button>
+  </div>
+
+  <div class="logged_info-tab">
+    <div id="loginStatus"></div>
+    <h3>Account info:</h3>
+    login 
+    <br>
+    notes count 
+    <br>
+    password 
+    <br>
+
+    <button onclick="deleteUser()">Delete User</button>
+  </div>
+
+  <div class="logged_list-tab">
+    <ul>
+      <li>Item 1</li>
+      <li>Item 2</li>
+      <li class=done>Item 3</li>
+      <li class=done>Item 4</li>
+      <li>Item 5</li>
+      <li>Item 6</li>
+      <li class=done>Item 7</li>
+      <li>Item 8</li>
+      <li>Item 9</li>
+      <li>Item 10</li>
+    </ul>
+  </div>
+
+  <hr>
+
+  <button onclick="test()">Test</button>
+  <button onclick="getUsers()">Get Users</button>
+
   <ul>
+    <li class=done>User is able to register account in the system</li>
+    <li class=done>User is able to login into the system</li>
     <li>User can delete his account, view account info, update account info when logged in</li>
     <li>User can see other users in system and their notes count</li>
     <li>User can see only personal notes</li>
@@ -19,99 +63,15 @@
     <li>User can see total number of personal notes</li>
   </ul>
 
-  <button onclick="getUsers()">get users</button>
-  <br>
-  <hr>
-  <br>
-
-
-  <input id="login_name" type="text" placeholder="name">
-  <br>
-  <input id="login_pass" type="password" placeholder="password">
-  <br>
-  <button onclick="logIn()">Login</button>
-  <button onclick="addUser()">Add User</button>
-
-  <div class="userpage">
-    <div id="loginStatus"></div>
-    <div class=logged>
-      <h3>Account info:</h3>
-      login <br>
-      notes count <br>
-      password <br>
-
-      <button onclick="deleteUser()">Delete User</button>
-    </div>
-  </div>
-
-  <script>
-    const addUser = () => {
-      let user = getNames();
-      fetch('/api/users', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          username: user.username,
-          password: user.password
-        })
-      })
-        .then(res => res.json())
-        .then(data => { console.log(data) })
-        .catch(err => { console.log(err) })
-    }
-
-    const logIn = () => {
-      let user = getNames();
-
-      let query = '?'
-      query += 'username=' + user.username + '&'
-      query += 'password=' + user.password + '&'
-
-      fetch('/api/login' + query)
-        .then(res => res.json())
-        .then(data => { console.log(data) })
-        .catch(err => { console.log(err) })
-    }
-
-    const getUsers = () => {
-      fetch('/api/users')
-        .then(res => res.json())
-        .then(data => {
-          console.log(data)
-        })
-    }
-
-    const setStatus = () => {
-
-    }
-
-    statusBlock = document.getElementById('loginStatus')
-    const getNames = () => {
-      return {
-        username: document.getElementById('login_name').value,
-        password: document.getElementById('login_pass').value
-      }
-    }
-  </script>
-
-  <style>
-    .logged {
-      display: inline-block;
-      padding: 20px;
-      border: 1px solid black;
-      margin-top: 20px;
-    }
-  </style>
-
-  <br>
-  <br>
-  <hr>
-  <br>
-
-  <ul>
-    <li>User is able to register account in the system</li>
-    <li>User is able to login into the system</li>
-  </ul>
+  <link rel="stylesheet" href="styles.css">
+  <script src="scripts.js"></script>
+  
+  <!-- bundle later -->
+  <script src="scripts/_new.js"></script>
+  <script src="scripts/_test.js"></script>
+  
+  <script src="scripts/login.js"></script>
+  <script src="scripts/users.js"></script>
 
 </body>
 
