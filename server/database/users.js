@@ -1,11 +1,11 @@
 let mongoose = require('mongoose');
 
 let userSchema = {
-  username: String,
-  password: String
+  username: { type: String, required: true },
+  password: { type: String, required: true }
 };
 
-let User = mongoose.model('User', userSchema);
+let User = mongoose.model('User', userSchema, 'users');
 
 
 module.exports.getUsers = (filter) => User.find(filter).exec();

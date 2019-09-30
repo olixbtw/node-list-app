@@ -1,4 +1,3 @@
-statusBlock = document.getElementById('loginStatus')
 const getNames = () => {
   return {
     username: document.getElementById('login_name').value,

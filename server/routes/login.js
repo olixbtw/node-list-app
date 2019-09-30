@@ -4,7 +4,7 @@ let router = express.Router();
 let Users = require('../database/users');
 
 const jwt = require('jsonwebtoken');
-const sugar = 'abc';
+const sugar = require("../config/_sugar.json").sugar;
 
 router.get('/login', (req, res) => {
   Users.getUsers()
@@ -15,7 +15,7 @@ router.get('/login', (req, res) => {
       });
 
       if (authenticated) {
-        console.log(authenticated);
+        // console.log(authenticated);
         const token = jwt.sign(authenticated.toJSON(), sugar);
         res.json(token);
       } else

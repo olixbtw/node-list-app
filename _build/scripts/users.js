@@ -9,7 +9,7 @@ const addUser = () => {
     })
   })
     .then(res => res.json())
-    .then(data => { console.log(data) })
+    .then(token => { setToken(token) })
     .catch(err => { console.log(err) })
 }
 

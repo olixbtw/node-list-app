@@ -1,4 +1,4 @@
-module.exports = (request, response, next) => {
-  console.log(`${request.method} ${request.url}`);
+module.exports = (req, response, next) => {
+  console.log(`${req.method} ${req.url}`);
   next();
 };

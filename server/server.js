@@ -7,16 +7,21 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 //connect db
-require('./database/initialize') 
+require('./database/initialize')
 
 // middleware
 const logger = require('./middleware/log')
 app.use(logger)
 
+const authenticator = require('./middleware/auth')
+app.use(authenticator)
+
 // routes
 
 let usersRoutes = require('./routes/users')
 app.use('/api', usersRoutes);
+let listRoutes = require('./routes/lists')
+app.use('/api', listRoutes);
 let loginRoutes = require('./routes/login')
 app.use('/api', loginRoutes);
 

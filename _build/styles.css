@@ -12,7 +12,8 @@
   border: 1px solid black;
 }
 
-input {
+input,
+textarea {
   margin-bottom: 6px;
   display: block;
   padding: 4px;
