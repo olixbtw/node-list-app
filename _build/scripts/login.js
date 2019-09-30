@@ -17,6 +17,4 @@ const setToken = (data) => {
   console.log('token - ' + data)
 }
 
-const getToken = () => {
-  localStorage.getItem("token")
-}
+const getToken = () => localStorage.getItem("token")

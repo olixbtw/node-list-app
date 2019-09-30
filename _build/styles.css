@@ -3,6 +3,7 @@
 }
 
 .login-tab,
+.new_task-tab,
 .logged_list-tab,
 .logged_info-tab {
   display: inline-block;

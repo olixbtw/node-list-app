@@ -20,7 +20,7 @@ app.use(authenticator)
 
 let usersRoutes = require('./routes/users')
 app.use('/api', usersRoutes);
-let listRoutes = require('./routes/lists')
+let listRoutes = require('./routes/tasks')
 app.use('/api', listRoutes);
 let loginRoutes = require('./routes/login')
 app.use('/api', loginRoutes);

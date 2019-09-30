@@ -32,12 +32,12 @@
     <button onclick="deleteUser()">Delete User</button>
   </div>
 
-  <div class="logged_list-tab">
+  <div class="new_task-tab">
     <textarea id="taskText" cols="30" rows="10"></textarea>
     <button onclick="addTask()">Add Task</button>
-    
-    <button onclick="getTasks()">Add Task</button>
-
+  </div>
+  
+  <div class="logged_list-tab">
     <ul>
       <li>Item 1</li>
       <li>Item 2</li>
@@ -53,9 +53,12 @@
   </div>
 
   <hr>
+  <hr>
 
   <button onclick="test()">Test</button>
   <button onclick="getUsers()">Get Users</button>
+
+  <button onclick="getTasks()">Get Tasks</button>
 
   <ul>
     <li class=done>User is able to register account in the system</li>
@@ -72,12 +75,12 @@
   <script src="scripts.js"></script>
 
   <!-- bundle later -->
-  <script src="scripts/_new.js"></script>
-  <script src="scripts/_test.js"></script>
 
   <script src="scripts/login.js"></script>
   <script src="scripts/users.js"></script>
+  <script src="scripts/tasks.js"></script>
 
+  <script src="scripts/_test.js"></script>
 </body>
 
 </html>
