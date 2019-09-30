@@ -28,6 +28,8 @@ let List = mongoose.model('List', listSchema);
 
 module.exports.getTasks = (filter) => List.find({ userId: filter }).exec();
 
+module.exports.removeAllTasks = (filter) => List.find(filter).deleteMany().exec();
+
 module.exports.addTask = (text, userId) => new List({
   text: text,
   userId: userId

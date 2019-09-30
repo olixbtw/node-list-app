@@ -26,3 +26,13 @@ const getTasks = () => {
     .then(data => { console.log(data) })
     .catch(err => { console.log(err) })
 }
+
+const removeAllTasks = () => {
+
+  fetch('/api/tasks/clear', {
+    method: 'DELETE'
+  })
+    .then(res => res.json())
+    .then(data => { console.log(data) })
+    .catch(err => { console.log(err) })
+}

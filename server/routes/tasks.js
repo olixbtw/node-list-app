@@ -22,4 +22,11 @@ router.post('/tasks', (req, res) => {
     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
 });
 
+router.delete('/tasks/clear', (req, res) => {
+  //delete user's tasks
+  List.removeAllTasks()
+    .then(data => res.json(data))
+    .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
+})
+
 module.exports = router;

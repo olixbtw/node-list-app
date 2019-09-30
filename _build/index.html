@@ -20,8 +20,8 @@
   </div>
 
   <div class="logged_info-tab">
-    <div id="loginStatus"></div>
     <h3>Account info:</h3>
+    <div id="loginStatus"></div>
     login
     <br>
     notes count
@@ -57,9 +57,12 @@
 
   <button onclick="test()">Test</button>
   <button onclick="getUsers()">Get Users</button>
-
+  
   <button onclick="getTasks()">Get Tasks</button>
-
+  
+  <br>
+  <button onclick="removeAllUsers()" style="background: red;">Remove All Users</button>
+  <button onclick="removeAllTasks()" style="background: red;">Remove All Tasks</button>
   <ul>
     <li class=done>User is able to register account in the system</li>
     <li class=done>User is able to login into the system</li>
