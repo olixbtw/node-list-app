@@ -65,7 +65,7 @@ const deleteTask = (taskId) => {
 
 // const editTask = (taskId) => {
 //   console.log('UpdateTask')
-  
+
 //   if(event.target.innerText === 'Edit' ){
 //     event.target.innerText = "Save"
 //     event.target.parentElement.contenteditable = true
