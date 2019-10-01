@@ -6,7 +6,6 @@ let currentUser = {
 }
 
 const getCurrentUserData = async (token) => {
-  console.log('getCurrentUserData')
   return await fetch('/api/users', {
     headers: { 'authorization': token }
   }).then(res => res.json())
@@ -15,7 +14,6 @@ const getCurrentUserData = async (token) => {
 }
 
 const getCurrentUserTasks = async (token) => {
-  console.log('getCurrentUserTasks')
   return await fetch('/api/tasks', {
     headers: { 'authorization': token }
   }).then(res => res.json())

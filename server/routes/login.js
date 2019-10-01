@@ -15,7 +15,6 @@ router.get('/login', (req, res) => {
       });
 
       if (authenticated) {
-        // console.log(authenticated);
         const token = jwt.sign(authenticated.toJSON(), sugar);
         res.json(token);
       } else

@@ -12,6 +12,7 @@ const addTask = () => {
   })
     .then(res => res.json())
     .then(data => {
+      updateCounter()
       if (currentUser.tasks.length === 0)
         document.getElementById('task_list').innerHTML = ''
       document.getElementById('task_list').innerHTML += drawListItem(data)
@@ -29,18 +30,7 @@ const getCurrentTasks = () => {
     .catch(err => { console.log(err) })
 }
 
-// const getCurrentTasks = (taskId) => {
-//   fetch('/api/task' + taskId, {
-//     method: "UPDATE",
-//     headers: { 'authorization': getToken() }
-//   })
-//     .then(res => res.json())
-//     .then(data => { console.log(data); return data })
-//     .catch(err => { console.log(err) })
-// }
-
-// const toggleComplete = (taskId) => {
-function toggleComplete(taskId) {
+const toggleComplete = (taskId) => {
   let evt = event;
 
   fetch('/api/tasks/' + taskId + '?compl=true', {
@@ -48,8 +38,25 @@ function toggleComplete(taskId) {
     headers: { 'authorization': getToken() }
   })
     .then(res => res.json())
-    .then(data => { evt.target.classList.toggle('done') })
+    .then(() => { evt.target.classList.toggle('done') })
     .catch(err => { console.log(err) })
-  // console.log('complete - ' + data);
 }
-const deleteItem = (data) => { console.log('delete - ' + data); event.stopPropagation() }
+
+const deleteItem = (taskId) => {
+  let evt = event;
+  fetch('/api/tasks/' + taskId + '?compl=true', {
+    method: "DELETE",
+    headers: { 'authorization': getToken() }
+  })
+    .then(res => res.json())
+    .then(() => {
+      updateCounter()
+
+      currentUser.tasks = currentUser.tasks.filter(item => item._id !== evt.target.parentElement.id)
+      evt.target.parentElement.remove()
+      if (currentUser.tasks.length === 0)
+        drawList([])
+    })
+    .catch(err => { console.log(err) })
+  evt.stopPropagation()
+}

@@ -30,6 +30,7 @@ const authorize = () => {
 const logIn = () => {
   currentUser.logged = true;
   clearData()
+
   getCurrentUserData(getToken()).then(data => {
     drawInfo(data)
     currentUser.data = data;
@@ -37,6 +38,7 @@ const logIn = () => {
   getCurrentUserTasks(getToken()).then(list => {
     drawList(list)
     currentUser.tasks = list;
+    updateCounter()
   })
 
   document.body.setAttribute('class', 'loggedIn');

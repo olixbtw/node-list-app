@@ -24,8 +24,7 @@ const deleteUser = () => {
     }
   })
     .then(res => res.json())
-    .then(data => {
-      console.log(data)
+    .then(() => {
       logOut()
     })
     .catch(err => { console.log(err) })
