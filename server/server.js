@@ -25,6 +25,6 @@ app.use('/api', listRoutes);
 let loginRoutes = require('./routes/login')
 app.use('/api', loginRoutes);
 
-app.use('/', express.static('./_build'))
+app.use('/', express.static('./build'))
 
 app.listen(serverConfig.port, () => { console.log(`Server runs on ${serverConfig.port}`) })
