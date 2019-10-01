@@ -24,6 +24,20 @@ router.post('/tasks', (req, res) => {
     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
 });
 
+router.put('/tasks/:id', (req, res) => {
+  if (req.query.compl) {
+    List.getTask(req.params.id)
+      .then(thisTask => {
+        List.updateCompleted({ _id: req.params.id }, !thisTask.completed)
+          .then(newTask => {
+            res.json(newTask)
+          })
+          .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
+      })
+  }
+  // res.send('updated')
+})
+
 //service - delete all tasks
 router.delete('/tasks/clear', (req, res) => {
   //delete user's tasks

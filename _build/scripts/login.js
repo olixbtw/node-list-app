@@ -1,11 +1,15 @@
-const authorize = async () => {
+window.onload = () => {
+  if (getToken()) logIn()
+}
+
+const authorize = () => {
   let user = getNames();
 
   let query = '?'
   query += 'username=' + user.username + '&'
   query += 'password=' + user.password + '&'
 
-  return await fetch('/api/login' + query)
+  fetch('/api/login' + query)
     .then(res => {
       if (res.status === 401)
         return false
@@ -25,14 +29,14 @@ const authorize = async () => {
 
 const logIn = () => {
   currentUser.logged = true;
-
+  clearData()
   getCurrentUserData(getToken()).then(data => {
-    getCurrentUserTasks(getToken()).then(tasks => {
-      currentUser.data = data;
-      currentUser.tasks = tasks;
-
-      dispalyData(data, tasks)
-    })
+    drawInfo(data)
+    currentUser.data = data;
+  })
+  getCurrentUserTasks(getToken()).then(list => {
+    drawList(list)
+    currentUser.tasks = list;
   })
 
   document.body.setAttribute('class', 'loggedIn');
@@ -44,6 +48,7 @@ const logOut = () => {
   removeToken()
 }
 
+//token
 const setToken = (data) => {
   localStorage.setItem("token", data);
 }
@@ -56,6 +61,4 @@ const removeToken = () => {
   return localStorage.removeItem("token")
 }
 
-window.onload = () => {
-  if (getToken()) logIn()
-}
+

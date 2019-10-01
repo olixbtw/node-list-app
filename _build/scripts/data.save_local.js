@@ -1,8 +1,8 @@
 let currentUser = {
   logged: false,
   token: getToken(),
-  data: {},
-  tasks: {}
+  data: [],
+  tasks: []
 }
 
 const getCurrentUserData = async (token) => {

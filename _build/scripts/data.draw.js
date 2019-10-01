@@ -11,24 +11,24 @@ const drawInfo = (userData) => {
 }
 
 const drawList = (userList) => {
-
   let listString = ''
-  userList.forEach(item => {
-    console.log(item)
-    listString += `
-      <li ${item.completed ? 'class=done' : ''} onclick='completeItem("${item._id}")'>
-      <button onclick='deleteItem("${item._id}")'>Delete</button>
-      ${item.text}
-      <span class="date">${item.createdDate}</span>
-    </li>
-    `
-  });
+
+  if (userList.length)
+    userList.forEach(item => {
+      console.log(item)
+      listString += drawListItem(item)
+    });
+  else
+    listString = `<li>No tasks available</li>`
 
   document.getElementById('task_list').innerHTML = listString
 }
 
-const dispalyData = (data, list) => {
-  clearData()
-  drawInfo(data)
-  drawList(list)
+const drawListItem = (item) => {
+  return `
+    <li ${item.completed ? 'class=done' : ''} onclick='toggleComplete("${item._id}")'>
+    <button onclick='deleteItem("${item._id}")'>Delete</button>
+    ${item.text}
+    <span class="date">${item.createdDate}</span>
+    </li>  `
 }
