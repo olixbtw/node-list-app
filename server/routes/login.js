@@ -1,6 +1,6 @@
+let { statuses, httpStatuses } = require('../config/constants');
 let express = require('express');
 let router = express.Router();
-
 let Users = require('../database/users');
 
 const jwt = require('jsonwebtoken');
@@ -18,7 +18,7 @@ router.get('/login', (req, res) => {
         const token = jwt.sign(authenticated.toJSON(), sugar);
         res.json(token);
       } else
-        res.status(401).json('You\'re not authenticated');
+        res.status(httpStatuses.LOGIN).json('You\'re not authenticated');
 
     })
     .catch(err => console.log(err))

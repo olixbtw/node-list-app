@@ -5,6 +5,7 @@
   },
   "httpStatuses": {
     "OK": 200,
+    "LOGIN": 401,
     "SERVER_ERROR": 500
   }
 }
