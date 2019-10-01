@@ -11,7 +11,7 @@ const getAllUsers = () => {
 }
 
 const deleteAllUsers = () => {
-  fetch(address +'/api/users/clear', {
+  fetch(address + '/api/users/clear', {
     method: 'DELETE'
   })
     .then(res => res.json())
@@ -23,14 +23,14 @@ const deleteAllUsers = () => {
 // tasks
 
 const getAllTasks = () => {
-  fetch(address +'/api/tasks')
+  fetch(address + '/api/tasks')
     .then(res => res.json())
     .then(data => { console.log(data); return data })
     .catch(err => { console.log(err) })
 }
 
 const deleteAllTasks = () => {
-  fetch(address +'/api/tasks/clear', {
+  fetch(address + '/api/tasks/clear', {
     method: 'DELETE'
   })
     .then(res => res.json())

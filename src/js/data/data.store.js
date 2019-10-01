@@ -1,6 +1,7 @@
 const variables = require('./../_variables.js')
 let address = variables.request
-let { token } = require('./../requests/login')
+
+let { token } = require('./login')
 
 let currentUser = {
   logged: false,

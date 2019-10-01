@@ -1,4 +1,4 @@
-const variables = require('./../_variables.js')
+const variables = require('~/_variables.js')
 let address = variables.request
 
 const addUser = () => {
@@ -13,7 +13,7 @@ const addUser = () => {
   })
     .then(res => res.json())
     .then(token => {
-      setToken(token);
+      setToken(token)
       logIn()
     })
     .catch(err => { console.log(err) })
@@ -22,9 +22,7 @@ const addUser = () => {
 const deleteUser = () => {
   fetch(address + '/api/users', {
     method: 'DELETE',
-    headers: {
-      'authorization': getToken()
-    }
+    headers: {'authorization': getToken()}
   })
     .then(res => res.json())
     .then(() => {

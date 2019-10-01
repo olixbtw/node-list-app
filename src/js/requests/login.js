@@ -1,3 +1,6 @@
+// const storage = require('./../data/data.store.js')
+// console.log(storage)
+
 const variables = require('./../_variables.js')
 let address = variables.request
 
@@ -49,18 +52,6 @@ const logOut = () => {
   removeToken()
 }
 
-//token
-const setToken = (data) => {
-  localStorage.setItem("token", data);
-}
-
-const getToken = () => {
-  return localStorage.getItem("token")
-}
-
-const removeToken = () => {
-  return localStorage.removeItem("token")
-}
 
 
 module.exports = {
