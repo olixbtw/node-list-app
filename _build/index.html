@@ -55,31 +55,41 @@
   </div>
 
   <hr>
-  <hr>
 
-  <button onclick="getCurrentTasks()">Get Tasks of current user</button>
+  <button onclick="showTest()">Show Test Area</button>
+  <script>
+    const showTest = () => {
+      document.getElementById('testArea').style.display === 'none'
+        ? document.getElementById('testArea').style.display = 'block'
+        : document.getElementById('testArea').style.display = 'none'
+    }
+  </script>
 
-  <br>
+  <div id="testArea" style="display: none">
+    <hr>
+    <button onclick="getCurrentTasks()">Get Tasks of current user</button>
 
-  <button onclick="getAllUsers()" style="background: yellow;">Get all Users</button>
-  <button onclick="getAllTasks()" style="background: yellow;">Get all Tasks</button>
+    <br>
 
-  <br>
+    <button onclick="getAllUsers()" style="background: yellow;">Get all Users</button>
+    <button onclick="getAllTasks()" style="background: yellow;">Get all Tasks</button>
 
-  <button onclick="deleteAllUsers()" style="background: red;">Remove All Users</button>
-  <button onclick="deleteAllTasks()" style="background: red;">Remove All Tasks</button>
+    <br>
 
-  <ul>
-    <li class=done>User is able to register account in the system</li>
-    <li class=done>User is able to login into the system</li>
-    <li>User can delete his account, view account info, update account info when logged in</li>
-    <li>User can see other users in system and their notes count</li>
-    <li class=done style="color:darkgoldenrod">User can see only personal notes</li>
-    <li>User can create, view, update, delete personal notes</li>
-    <li class=done style="color:darkgoldenrod">User can manage personal notes only when logged in</li>
-    <li class=done>User can see total number of personal notes</li>
-  </ul>
+    <button onclick="deleteAllUsers()" style="background: red;">Remove All Users</button>
+    <button onclick="deleteAllTasks()" style="background: red;">Remove All Tasks</button>
 
+    <ul>
+      <li class=done>User is able to register account in the system</li>
+      <li class=done>User is able to login into the system</li>
+      <li>User can delete his account, view account info, update account info when logged in</li>
+      <li>User can see other users in system and their notes count</li>
+      <li class=done style="color:darkgoldenrod">User can see only personal notes</li>
+      <li>User can create, view, update, delete personal notes</li>
+      <li class=done style="color:darkgoldenrod">User can manage personal notes only when logged in</li>
+      <li class=done>User can see total number of personal notes</li>
+    </ul>
+  </div>
   <link rel="stylesheet" href="styles.css">
 
   <!-- bundle later -->
