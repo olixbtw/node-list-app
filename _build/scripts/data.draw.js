@@ -28,10 +28,11 @@ const drawList = (userList) => {
 const drawListItem = (item) => {
   return `
     <li id="${item._id}" ${item.completed ? 'class=done' : ''} onclick='toggleComplete("${item._id}")'>
-    <button onclick='deleteItem("${item._id}")'>Delete</button>
+    <button onclick='deleteTask("${item._id}")'>Delete</button>
     ${item.text}
     <span class="date">${item.createdDate}</span>
     </li>  `
+    // <button onclick='editTask("${item._id}")'>Edit</button>
 }
 
 const updateCounter = () => {

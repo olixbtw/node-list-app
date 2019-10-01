@@ -31,18 +31,19 @@ const getCurrentTasks = () => {
 }
 
 const toggleComplete = (taskId) => {
-  let evt = event;
-
-  fetch('/api/tasks/' + taskId + '?compl=true', {
-    method: "PUT",
-    headers: { 'authorization': getToken() }
-  })
-    .then(res => res.json())
-    .then(() => { evt.target.classList.toggle('done') })
-    .catch(err => { console.log(err) })
+  if (event.target.nodeName === "LI") {
+    let evt = event;
+    fetch('/api/tasks/' + taskId + '?compl=true', {
+      method: "PUT",
+      headers: { 'authorization': getToken() }
+    })
+      .then(res => res.json())
+      .then(() => { evt.target.classList.toggle('done') })
+      .catch(err => { console.log(err) })
+  }
 }
 
-const deleteItem = (taskId) => {
+const deleteTask = (taskId) => {
   let evt = event;
   fetch('/api/tasks/' + taskId + '?compl=true', {
     method: "DELETE",
@@ -60,3 +61,14 @@ const deleteItem = (taskId) => {
     .catch(err => { console.log(err) })
   evt.stopPropagation()
 }
+
+
+// const editTask = (taskId) => {
+//   console.log('UpdateTask')
+  
+//   if(event.target.innerText === 'Edit' ){
+//     event.target.innerText = "Save"
+//     event.target.parentElement.contenteditable = true
+//   }
+//   console.log(event.target.innerText)
+// }
