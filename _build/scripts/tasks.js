@@ -72,3 +72,4 @@ const deleteTask = (taskId) => {
 //   }
 //   console.log(event.target.innerText)
 // }
+
