@@ -1,6 +1,9 @@
+const variables = require('./../_variables.js')
+let address = variables.request
+
 const addUser = () => {
   let user = getNames();
-  fetch('/api/users', {
+  fetch(address + '/api/users', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -17,7 +20,7 @@ const addUser = () => {
 }
 
 const deleteUser = () => {
-  fetch('/api/users', {
+  fetch(address + '/api/users', {
     method: 'DELETE',
     headers: {
       'authorization': getToken()
@@ -28,4 +31,17 @@ const deleteUser = () => {
       logOut()
     })
     .catch(err => { console.log(err) })
+}
+
+
+module.exports = {
+  addUser,
+  deleteUser
+}
+
+const getNames = () => {
+  return {
+    username: document.getElementById('login_name').value,
+    password: document.getElementById('login_pass').value
+  }
 }

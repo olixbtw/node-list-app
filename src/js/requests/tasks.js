@@ -1,10 +1,15 @@
+const variables = require('./../_variables.js')
+let address = variables.request
+
+let { token } = require('./../requests/login')
+
 const addTask = () => {
   let taskText = document.getElementById('taskText').value
-  fetch('/api/tasks', {
+  fetch(address + '/api/tasks', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'authorization': getToken()
+      'authorization': token.getToken()
     },
     body: JSON.stringify({
       text: taskText
@@ -22,8 +27,8 @@ const addTask = () => {
 }
 
 const getCurrentTasks = () => {
-  fetch('/api/tasks', {
-    headers: { 'authorization': getToken() }
+  fetch(address + '/api/tasks', {
+    headers: { 'authorization': token.getToken() }
   })
     .then(res => res.json())
     .then(data => { console.log(data); return data })
@@ -33,9 +38,9 @@ const getCurrentTasks = () => {
 const toggleComplete = (taskId) => {
   if (event.target.nodeName === "LI") {
     let evt = event;
-    fetch('/api/tasks/' + taskId + '?compl=true', {
+    fetch(address + '/api/tasks/' + taskId + '?compl=true', {
       method: "PUT",
-      headers: { 'authorization': getToken() }
+      headers: { 'authorization': token.getToken() }
     })
       .then(res => res.json())
       .then(() => { evt.target.classList.toggle('done') })
@@ -45,9 +50,9 @@ const toggleComplete = (taskId) => {
 
 const deleteTask = (taskId) => {
   let evt = event;
-  fetch('/api/tasks/' + taskId + '?compl=true', {
+  fetch(address + '/api/tasks/' + taskId + '?compl=true', {
     method: "DELETE",
-    headers: { 'authorization': getToken() }
+    headers: { 'authorization': token.getToken() }
   })
     .then(res => res.json())
     .then(() => {
@@ -62,10 +67,16 @@ const deleteTask = (taskId) => {
   evt.stopPropagation()
 }
 
+module.exports = {
+  addTask,
+  getCurrentTasks,
+  toggleComplete,
+  deleteTask
+}
 
 // const editTask = (taskId) => {
 //   console.log('UpdateTask')
-  
+
 //   if(event.target.innerText === 'Edit' ){
 //     event.target.innerText = "Save"
 //     event.target.parentElement.contenteditable = true

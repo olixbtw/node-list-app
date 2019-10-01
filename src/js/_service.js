@@ -1,5 +1,8 @@
+const variables = require('./_variables.js')
+let address = variables.request
+
 const getAllUsers = () => {
-  fetch('/api/users')
+  fetch(address + '/api/users')
     .then(res => res.json())
     .then(data => {
       console.log(data)
@@ -8,7 +11,7 @@ const getAllUsers = () => {
 }
 
 const deleteAllUsers = () => {
-  fetch('/api/users/clear', {
+  fetch(address +'/api/users/clear', {
     method: 'DELETE'
   })
     .then(res => res.json())
@@ -20,17 +23,26 @@ const deleteAllUsers = () => {
 // tasks
 
 const getAllTasks = () => {
-  fetch('/api/tasks')
+  fetch(address +'/api/tasks')
     .then(res => res.json())
     .then(data => { console.log(data); return data })
     .catch(err => { console.log(err) })
 }
 
 const deleteAllTasks = () => {
-  fetch('/api/tasks/clear', {
+  fetch(address +'/api/tasks/clear', {
     method: 'DELETE'
   })
     .then(res => res.json())
     .then(data => { console.log(data) })
     .catch(err => { console.log(err) })
 }
+
+module.exports = {
+  getAllTasks,
+  deleteAllTasks,
+  getAllUsers,
+  deleteAllUsers
+}
+
+// document.getElementById('').addEventListener('click', functiNN)

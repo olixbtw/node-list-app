@@ -1,6 +1,5 @@
-window.onload = () => {
-  if (getToken()) logIn()
-}
+const variables = require('./../_variables.js')
+let address = variables.request
 
 const authorize = () => {
   let user = getNames();
@@ -9,7 +8,7 @@ const authorize = () => {
   query += 'username=' + user.username + '&'
   query += 'password=' + user.password + '&'
 
-  fetch('/api/login' + query)
+  fetch(address + '/api/login' + query)
     .then(res => {
       if (res.status === 401)
         return false
@@ -64,3 +63,28 @@ const removeToken = () => {
 }
 
 
+module.exports = {
+  token: {
+    setToken,
+    getToken,
+    removeToken
+  },
+  authenticator: {
+    authorize,
+    logIn,
+    logOut
+  }
+}
+
+
+window.onload = () => {
+  if (getToken()) logIn()
+}
+
+
+const getNames = () => {
+  return {
+    username: document.getElementById('login_name').value,
+    password: document.getElementById('login_pass').value
+  }
+}

@@ -1,10 +1,14 @@
 const express = require('express')
+const cors = require('cors');
 
 //initialize app
 let serverConfig = require('./config/server')
 const app = express()
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
+app.use(cors());
 
 //connect db
 require('./database/initialize')
