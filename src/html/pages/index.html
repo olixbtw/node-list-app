@@ -9,87 +9,98 @@
 </head>
 
 <body>
-  <h1 id=main_header>ToDo List</h1>
+  <div class="wrapper">
+    <div class="container">
 
-  <div class="login-tab">
-    <input id="login_name" type="text" placeholder="name">
-    <input id="login_pass" type="password" placeholder="password">
+      <header>
 
-    <button id="buttonAuthorize">Login</button>
-    <button id="buttonAddUser">Add User</button>
+        <h1 id=main_header>ToDo List</h1>
 
-    <div id="login-tab_prompt" class="prompt"></div>
+        <button id="buttonLogout">LogOut</button>
+      </header>
+
+      <section class="login">
+        <div class="login-content">
+
+          <input id="login_name" type="text" placeholder="name">
+          <input id="login_pass" type="password" placeholder="password">
+
+          <button id="buttonAuthorize">Login</button>
+          <button id="buttonAddUser" class="regular">Add User</button>
+
+          <span id="login-tab_prompt" class="prompt">
+            <!-- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Veniam, obcaecati. -->
+          </span>
+        </div>
+      </section>
+
+      <section class="account">
+
+        <div class="logged_info-block">
+          <h3>Account info:</h3>
+
+          <div id="loginData">DATA HERE</div>
+          <div id="taskCounter">DATA HERE</div>
+
+          <button id="buttonDeleteUser" class="regular">Delete User</button>
+          <button id="buttonEditUser">Edit User</button>
+        </div>
+
+        <div class="new_task-block">
+          <textarea id="taskText"></textarea>
+          <button id="buttonAddTask">Add Task</button>
+        </div>
+
+        <div class="task_list-block">
+          <ul id="task_list">
+            <li>No tasks available</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
   </div>
+  <section class="test">
+    <div class="container">
 
-  <div class="logged_info-tab">
-    <h3>Account info:</h3>
+      <hr>
 
-    <div id="loginData">DATA HERE</div>
-    <div id="taskCounter">DATA HERE</div>
+      <button onclick="showTest()">Show Test Area</button>
+      <script>
+        const showTest = () => {
+          document.getElementById('testArea').style.display === 'none'
+            ? document.getElementById('testArea').style.display = 'block'
+            : document.getElementById('testArea').style.display = 'none'
+        }
+      </script>
 
-    <button id="buttonDeleteUser">Delete User</button>
-    <button id="buttonLogout">LogOut</button>
-  </div>
+      <div id="testArea" style="display: none">
+        <hr>
+        <button id="buttonGetCurrentTasks">Get Tasks of current user</button>
 
-  <br>
-  <br>
+        <br>
 
-  <div class="new_task-tab">
-    <textarea id="taskText" cols="30" rows="10"></textarea>
-    <button id="buttonAddTask">Add Task</button>
-  </div>
+        <button id="buttonGetAllUsers" style="background: yellow;">Get all Users</button>
+        <button id="buttonGetAllTasks" style="background: yellow;">Get all Tasks</button>
 
-  <div class="logged_list-tab">
-    <ul id="task_list">
-      <li>Item 1</li>
-      <li>Item 2</li>
-      <li class=done>Item 3</li>
-      <li class=done>Item 4</li>
-      <li>Item 5</li>
-      <li>Item 6</li>
-      <li class=done>Item 7</li>
-      <li>Item 8</li>
-      <li>Item 9</li>
-      <li>Item 10</li>
-    </ul>
-  </div>
+        <br>
 
-  <hr>
+        <button id="buttonDeleteAllUsers" style="background: red;">Remove All Users</button>
+        <button id="buttonDeleteAllTasks" style="background: red;">Remove All Tasks</button>
 
-  <button onclick="showTest()">Show Test Area</button>
-  <script>
-    const showTest = () => {
-      document.getElementById('testArea').style.display === 'none'
-        ? document.getElementById('testArea').style.display = 'block'
-        : document.getElementById('testArea').style.display = 'none'
-    }
-  </script>
-
-  <div id="testArea" style="display: none">
-    <hr>
-    <button id="buttonGetCurrentTasks">Get Tasks of current user</button>
-
-    <br>
-
-    <button id="buttonGetAllUsers" style="background: yellow;">Get all Users</button>
-    <button id="buttonGetAllTasks" style="background: yellow;">Get all Tasks</button>
-
-    <br>
-
-    <button id="buttonDeleteAllUsers" style="background: red;">Remove All Users</button>
-    <button id="buttonDeleteAllTasks" style="background: red;">Remove All Tasks</button>
-
-    <ul>
-      <li class=done>User is able to register account in the system</li>
-      <li class=done>User is able to login into the system</li>
-      <li>User can delete his account, view account info, update account info when logged in</li>
-      <li>User can see other users in system and their notes count</li>
-      <li class=done style="color:darkgoldenrod">User can see only personal notes</li>
-      <li>User can create, view, update, delete personal notes</li>
-      <li class=done style="color:darkgoldenrod">User can manage personal notes only when logged in</li>
-      <li class=done>User can see total number of personal notes</li>
-    </ul>
-  </div>
+        <ul>
+          <li class=done>User is able to register account in the system</li>
+          <li class=done>User is able to login into the system</li>
+          <li>User can delete his account, view account info, update account info when logged in</li>
+          <li>User can see other users in system and their notes count</li>
+          <li class=done style="color:darkgoldenrod">User can see only personal notes</li>
+          <li>User can create, view, update, delete personal notes</li>
+          <li class=done style="color:darkgoldenrod">User can manage personal notes only when logged in</li>
+          <li class=done>User can see total number of personal notes</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 </body>
 
 </html>

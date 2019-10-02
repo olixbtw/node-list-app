@@ -1,0 +1,7 @@
+.logged_info-block {
+  max-width: 20rem;
+  @media (min-width: 55rem) {
+    position: fixed;
+    right: 10%;
+  }
+}

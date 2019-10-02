@@ -1,0 +1,24 @@
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 80rem;
+  width: 80%;
+}
+
+#buttonLogout {
+  display: none;
+}
+
+body.loggedIn section.login {
+  display: none;
+}
+
+body.loggedIn section.account,
+body.loggedIn #buttonLogout {
+  display: block;
+}

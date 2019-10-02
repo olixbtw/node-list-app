@@ -1,92 +1,32 @@
-
 // @import "utils/normalize";
 @import "utils/vars";
+@import "modules/footer";
+@import "modules/header";
+@import "modules/account";
+@import "modules/login";
+@import "layout";
+@import "elements";
+
+* {
+  box-sizing: border-box;
+}
 
 :root {
-  font-family: helvetica, arial, sans-serif;
+  font-family: $mainFont;
+  font-size: $mainFontSize;
+  color: $neutral-primary;
 }
 
-.login-tab,
-.new_task-tab,
-.logged_list-tab,
-.logged_info-tab {
-  /* display: inline-block; */
-  display: none;
-  vertical-align: top;
-  margin-right: 20px;
-  padding: 20px;
-  border: 1px solid black;
-}
-
-.login-tab {
-  display: inline-block;
-}
-
-body.loggedIn .new_task-tab,
-body.loggedIn .logged_list-tab,
-body.loggedIn .logged_info-tab {
-  display: inline-block;
-}
-
-body.loggedIn .login-tab {
-  display: none;
-}
-
-input,
-textarea {
-  margin-bottom: 6px;
-  display: block;
-  padding: 4px;
-}
-
-button {
-  margin-top: 6px;
-}
-
-h1,
-h2,
-h3 {
-  margin: 0 0 0.5em;
-}
-
-.logged_list-tab ul {
-  padding-left: 20px;
+body,
+html {
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  /* padding-bottom: 10px; */
+  padding: 0;
+}
+body {
+  overflow-x: hidden;
+  padding-top: 2rem;
 }
 
-.logged_list-tab ul li {
-  padding-top: 2px;
-  padding-bottom: 2px;
-  cursor: pointer;
-}
-.logged_list-tab ul li:hover {
-  text-decoration: underline;
-}
-
-.logged_list-tab ul .done {
-  order: 1;
-}
-
-.logged_list-tab ul .done,
-ul .done {
-  text-decoration: line-through;
-  color: darkgray;
-}
-
-.logged_list-tab ul li:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-.logged_list-tab ul li button {
-  float: right;
-  margin-top: 0;
-  margin-left: 10px;
-}
-
-.logged_list-tab ul li .date {
-  display: none;
+section {
+  padding: 3rem 0;
 }

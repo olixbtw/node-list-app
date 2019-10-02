@@ -1,0 +1,28 @@
+// login style
+
+section.login {
+  display: flex;
+}
+.login-content {
+  margin: auto;
+  text-align: center;
+  width: 20rem;
+
+  input {
+    width: 100%;
+  }
+  button {
+    min-width: 7rem;
+    margin: 0.5rem;
+  }
+
+  span {
+    display: block;
+    max-width: 100%;
+    font-size: 0.8rem;
+    text-align: left;
+    margin-top: 1rem;
+    color: $neutral-secondary;
+    color: $danger-color;
+  }
+}

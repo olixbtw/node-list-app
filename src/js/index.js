@@ -1,8 +1,11 @@
+tokenGlobal = require('./service/token')
+
+
 
 // import './events'
 
 window.onload = () => {
-  if (getToken()) logIn()
+  if (tokenGlobal.get()) logIn()
 }
 
 const authorize = () => {
@@ -20,7 +23,7 @@ const authorize = () => {
     })
     .then(token => {
       if (token) {
-        setToken(token)
+        tokenGlobal.set(token)
         logIn()
       }
       else {
@@ -34,11 +37,11 @@ const logIn = () => {
   currentUser.logged = true;
   clearData()
 
-  getCurrentUserData(getToken()).then(data => {
+  getCurrentUserData(tokenGlobal.get()).then(data => {
     drawInfo(data)
     currentUser.data = data;
   })
-  getCurrentUserTasks(getToken()).then(list => {
+  getCurrentUserTasks(tokenGlobal.get()).then(list => {
     drawList(list)
     currentUser.tasks = list;
     updateCounter()
@@ -50,26 +53,12 @@ const logIn = () => {
 const logOut = () => {
   currentUser.logged = false;
   document.body.removeAttribute('class');
-  removeToken()
+  tokenGlobal.remove()
 }
-
-//token
-const setToken = (data) => {
-  localStorage.setItem("token", data);
-}
-
-const getToken = () => {
-  return localStorage.getItem("token")
-}
-
-const removeToken = () => {
-  return localStorage.removeItem("token")
-}
-
 
 let currentUser = {
   logged: false,
-  token: getToken(),
+  token: tokenGlobal.get(),
   data: [],
   tasks: []
 }
@@ -119,7 +108,7 @@ const drawList = (userList) => {
 const drawListItem = (item) => {
   return `
     <li id="${item._id}" class="task-item ${item.completed ? 'done' : ''}">
-    <button onclick='deleteTask("${item._id}")'>Delete</button>
+    <button>Delete</button>
     ${item.text}
     <span class="date">${item.createdDate}</span>
     </li>  `
@@ -141,7 +130,7 @@ const addUser = () => {
   })
     .then(res => res.json())
     .then(token => {
-      setToken(token);
+      tokenGlobal.set(token);
       logIn()
     })
     .catch(err => { console.log(err) })
@@ -151,7 +140,7 @@ const deleteUser = () => {
   fetch(address + '/api/users', {
     method: 'DELETE',
     headers: {
-      'authorization': getToken()
+      'authorization': tokenGlobal.get()
     }
   })
     .then(res => res.json())
@@ -167,7 +156,7 @@ const addTask = () => {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'authorization': getToken()
+      'authorization': tokenGlobal.get()
     },
     body: JSON.stringify({
       text: taskText
@@ -175,18 +164,18 @@ const addTask = () => {
   })
     .then(res => res.json())
     .then(data => {
-      updateCounter()
       if (currentUser.tasks.length === 0)
         document.getElementById('task_list').innerHTML = ''
       document.getElementById('task_list').innerHTML += drawListItem(data)
       currentUser.tasks.push(data)
+      updateCounter()
     })
     .catch(err => { console.log(err) })
 }
 
 const getCurrentTasks = () => {
   fetch(address + '/api/tasks', {
-    headers: { 'authorization': getToken() }
+    headers: { 'authorization': tokenGlobal.get() }
   })
     .then(res => res.json())
     .then(data => { console.log(data); return data })
@@ -199,31 +188,40 @@ const toggleComplete = () => {
     let taskId = evt.target.id
     fetch(address + '/api/tasks/' + taskId + '?compl=true', {
       method: "PUT",
-      headers: { 'authorization': getToken() }
+      headers: { 'authorization': tokenGlobal.get() }
     })
       .then(res => res.json())
-      .then(() => { evt.target.classList.toggle('done') })
+      .then(() => { 
+        evt.target.classList.toggle('done') 
+      })
       .catch(err => { console.log(err) })
   }
 }
 
 const deleteTask = (taskId) => {
-  let evt = event;
-  fetch(address + '/api/tasks/' + taskId + '?compl=true', {
-    method: "DELETE",
-    headers: { 'authorization': getToken() }
-  })
-    .then(res => res.json())
-    .then(() => {
-      updateCounter()
 
-      currentUser.tasks = currentUser.tasks.filter(item => item._id !== evt.target.parentElement.id)
-      evt.target.parentElement.remove()
-      if (currentUser.tasks.length === 0)
-        drawList([])
-    })
-    .catch(err => { console.log(err) })
-  evt.stopPropagation()
+  if (event.target.parentElement.nodeName === "LI") {
+    if (event.target.nodeName === "BUTTON" && event.target.innerText === "Delete") {
+
+      let evt = event;
+      let taskId = evt.target.parentElement.id
+      fetch(address + '/api/tasks/' + taskId + '?compl=true', {
+        method: "DELETE",
+        headers: { 'authorization': tokenGlobal.get() }
+      })
+        .then(res => res.json())
+        .then(() => {
+
+          currentUser.tasks = currentUser.tasks.filter(item => item._id !== evt.target.parentElement.id)
+          evt.target.parentElement.remove()
+          updateCounter()
+          if (currentUser.tasks.length === 0)
+            drawList([])
+        })
+        .catch(err => { console.log(err) })
+      evt.stopPropagation()
+    }
+  }
 }
 
 
@@ -301,5 +299,6 @@ addClick(authorize, 'buttonAuthorize')
 addClick(logOut, 'buttonLogout')
 
 addClick(toggleComplete, 'task_list')
+addClick(deleteTask, 'task_list')
 
 let address = "http://localhost:8080"

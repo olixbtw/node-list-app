@@ -1,0 +1,71 @@
+$smallElemMargin: 0.75rem;
+
+input,
+textarea {
+  display: block;
+  padding: 4px;
+  font-size: 1rem;
+  border: 0px solid transparent;
+
+  background: $default-color;
+  padding: 0.5rem 1rem 0.25rem;
+  color: $neutral-primary;
+  margin-bottom: $smallElemMargin;
+  margin-top: $smallElemMargin;
+}
+input {
+  border-bottom: 0.2rem solid $border-base;
+}
+textarea {
+  border: 0.1rem solid $border-lightex;
+  border-bottom: 0.2rem solid $border-base;
+}
+
+button {
+  margin-bottom: $smallElemMargin;
+  margin-top: $smallElemMargin;
+  display: inline-block;
+  font-size: 1rem;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  border: 0.1rem solid;
+  font-weight: 600;
+  cursor: pointer;
+  border-color: $primary-color;
+  color: $neutral-primary;
+  background: $default-color;
+
+  &.default {
+    border-color: $primary-color;
+    color: $neutral-primary;
+    background: $default-color;
+  }
+  &.regular {
+    border-color: $neutral-placeholder;
+    color: $neutral-regular;
+    background: $default-color;
+    &:hover {
+      color: $neutral-primary;
+    }
+  }
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0.075rem 0.05rem 0.25rem $neutral-placeholder;
+  }
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.5em;
+}
+
+h1 {
+  font-size: 3rem;
+}
+h2 {
+  font-size: 2rem;
+}
+h3 {
+  font-size: 1rem;
+}
