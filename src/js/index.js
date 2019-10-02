@@ -1,9 +1,4 @@
 const tokenGlobal = require('./service/token')
-const currentUser = require('./service/store')
-const address = require('./service/_address')
-const draw = require('./draw/draw')
-const drawBlocks = require('./draw/draw.blocks')
-const counter = require('./user/taskCounter')
 const login = require('./user/authorization')
 
 const User = require('./user/user')

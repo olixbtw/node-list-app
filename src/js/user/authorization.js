@@ -5,37 +5,49 @@ const draw = require('./../draw/draw')
 const drawBlocks = require('./../draw/draw.blocks')
 const counter = require('./taskCounter')
 
-const authorize = () => {  
+const authorize = () => {
   let user = {
     username: document.getElementById('login_name').value,
     password: document.getElementById('login_pass').value
   };
 
-  let query = '?'
-  query += 'username=' + user.username + '&'
-  query += 'password=' + user.password + '&'
+  if (user.username & user.password) {
 
-  fetch(address + '/api/login' + query)
-    .then(res => {
-      if (res.status === 401){
-        drawBlocks.loginPrompt.innerHTML = "User doesn't exist. Register!"
-        return false
-      }
-      return res.json()
-    })
-    .then(token => {
-      if (token) {
-        tokenGlobal.set(token)
-        logIn()
-      }
-      else {
-        logOut()
-      }
-    })
-    .catch(err => { console.log(err) })
+    let query = '?'
+    query += 'username=' + user.username + '&'
+    query += 'password=' + user.password + '&'
+
+    fetch(address + '/api/login' + query)
+      .then(res => {
+        if (res.status === 401) {
+          drawBlocks.loginPrompt.innerHTML = "User doesn't exist. Register!"
+          return false
+        }
+        return res.json()
+      })
+      .then(token => {
+        if (token) {
+          tokenGlobal.set(token)
+          logIn()
+        }
+        else {
+          logOut()
+        }
+      })
+      .catch(err => { console.log(err) })
+  } else {
+    drawBlocks.loginPrompt.innerHTML = "Enter username and password"
+    if (user.username) {
+      drawBlocks.loginPrompt.innerHTML = "Enter password"
+    }
+    if (user.password) {
+      drawBlocks.loginPrompt.innerHTML = "What is your name?"
+    }
+    
+  }
 }
 
-const logIn = () => {  
+const logIn = () => {
   currentUser.logged = true;
   draw.clear()
 
@@ -43,7 +55,7 @@ const logIn = () => {
     drawBlocks.info.innerHTML = draw.info(data)
     currentUser.data = data;
   })
-  
+
   getCurrentUserTasks(tokenGlobal.get()).then(list => {
     drawBlocks.list.innerHTML = draw.list(list)
     currentUser.tasks = list;

@@ -4,7 +4,6 @@ const address = require('./../service/_address')
 const draw = require('./../draw/draw')
 const drawBlocks = require('./../draw/draw.blocks')
 const counter = require('./../user/taskCounter')
-const login = require('./../user/authorization')
 
 const addTask = () => {
   let taskText = document.getElementById('taskText').value

@@ -1,10 +1,7 @@
 const tokenGlobal = require('./../service/token')
-const currentUser = require('./../service/store')
 const address = require('./../service/_address')
-const draw = require('./../draw/draw')
-const drawBlocks = require('./../draw/draw.blocks')
-const counter = require('./../user/taskCounter')
 const login = require('./../user/authorization')
+const drawBlocks = require('./../draw/draw.blocks')
 
 const addUser = () => {
   let user = {
@@ -12,20 +9,32 @@ const addUser = () => {
     password: document.getElementById('login_pass').value
   };
 
-  fetch(address + '/api/users', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      username: user.username,
-      password: user.password
+  if (user.username & user.password)
+    fetch(address + '/api/users', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username: user.username,
+        password: user.password
+      })
     })
-  })
-    .then(res => res.json())
-    .then(token => {
-      tokenGlobal.set(token);
-      login.logIn()
-    })
-    .catch(err => { console.log(err) })
+      .then(res => res.json())
+      .then(token => {
+        if (token.status !== 'FAILURE') {
+          tokenGlobal.set(token);
+          login.logIn()
+        }
+      })
+      .catch(err => { console.log(err) })
+  else {
+    drawBlocks.loginPrompt.innerHTML = "Enter username and password"
+    if (user.username) {
+      drawBlocks.loginPrompt.innerHTML = "Enter password"
+    }
+    if (user.password) {
+      drawBlocks.loginPrompt.innerHTML = "What is your name?"
+    }
+  }
 }
 
 const deleteUser = () => {
