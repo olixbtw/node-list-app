@@ -1,9 +1,9 @@
-const currentUser = require('../store')
-const tokenGlobal = require('../service/token')
-const draw = require('../draw')
-const drawBlocks = require('../draw.blocks')
-const counter = require('./counter')
-const address = require('../service/_address')
+const currentUser = require('./../service/store')
+const tokenGlobal = require('./../service/token')
+const address = require('./../service/_address')
+const draw = require('./../draw/draw')
+const drawBlocks = require('./../draw/draw.blocks')
+const counter = require('./taskCounter')
 
 const authorize = () => {  
   let user = {

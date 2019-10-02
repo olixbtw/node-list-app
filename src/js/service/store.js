@@ -1,5 +1,5 @@
 
-const token = require('./service/token')
+const token = require('./token')
 
 module.exports = {
   logged: false,

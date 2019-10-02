@@ -1,6 +1,6 @@
 
-const drawBlocks = require('./../draw.blocks')
-const currentUser = require('./../store')
+const drawBlocks = require('./../draw/draw.blocks')
+const currentUser = require('./../service/store')
 
 const updateCounter = () => {
   drawBlocks.counter.innerHTML = 'Total number of notes - ' + currentUser.tasks.length
