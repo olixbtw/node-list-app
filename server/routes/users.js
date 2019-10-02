@@ -17,12 +17,6 @@ router.get('/users', (req, res) => {
   }
 });
 
-// router.get('/users/:id', (req, res) => {
-//   Users.getUserById(req.params.id)
-//     .then(user => { res.json(user) })
-//     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
-// });
-
 router.post('/users', (req, res) => {
   //check if user is unique
   Users.addUser(req.body.username, req.body.password)
@@ -53,5 +47,13 @@ router.delete('/users/clear', (req, res) => {
     .then(data => res.json(data))
     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
 })
+
+//strictly after /clear
+
+// router.get('/users/:id', (req, res) => {
+//   Users.getUserById(req.params.id)
+//     .then(user => { res.json(user) })
+//     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
+// });
 
 module.exports = router;
