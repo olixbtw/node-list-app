@@ -1,6 +1,6 @@
 .logged_info-block {
   max-width: 20rem;
-  @media (min-width: 55rem) {
+  @media (min-width: $smDesktopWidth) {
     position: fixed;
     right: 10%;
   }
