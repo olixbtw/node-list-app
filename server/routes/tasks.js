@@ -37,17 +37,18 @@ router.put('/tasks/:id', (req, res) => {
   }
   // res.send('updated')
 })
-router.delete('/tasks/:id', (req, res) => {
-  List.removeTask(req.params.id)
-    .then(thisTask => { res.json(thisTask) })
-    .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
-})
 
 //service - delete all tasks
 router.delete('/tasks/clear', (req, res) => {
   //delete user's tasks
   List.removeAllTasks()
     .then(data => res.json(data))
+    .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
+})
+
+router.delete('/tasks/:id', (req, res) => {
+  List.removeTask(req.params.id)
+    .then(thisTask => { res.json(thisTask) })
     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
 })
 
