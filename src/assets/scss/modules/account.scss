@@ -15,7 +15,7 @@ section.account {
 
 .task_list-block {
   margin-top: 3rem;
-  ul {
+  ol {
     display: flex;
     flex-direction: column;
     max-width: 25rem;
@@ -93,10 +93,10 @@ section.account {
     }
   }
 
-  ul,
+  ol,
   li {
     margin: 0;
     padding: 0;
-    list-style: none;
+    // list-style: none;
   }
 }

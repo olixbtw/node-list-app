@@ -3,6 +3,8 @@ const block = require('./draw.blocks')
 const clearData = () => {
   block.info.innerHTML = ''
   block.list.innerHTML = ''
+  block.counter.innerHTML = ''
+  block.loginPrompt.innerHTML = ''
 }
 
 const generateInfo = (userData) => {

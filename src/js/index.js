@@ -4,11 +4,8 @@ const drawBlocks = require('./draw.blocks')
 const currentUser = require('./store')
 const counter = require('./user/counter')
 const address = require('./service/_address')
-const login = require('./authorization')
+const login = require('./user/authorization')
 
-
-
-// import './events'
 
 window.onload = () => {
   if (tokenGlobal.get()) login.logIn()
@@ -85,7 +82,7 @@ const getCurrentTasks = () => {
 }
 
 const toggleTaskComplete = () => {
-  if (event.target.nodeName === "LI") {
+  if (event.target.nodeName === "OL") {
     let evt = event;
     let taskId = evt.target.id
     fetch(address + '/api/tasks/' + taskId + '?compl=true', {

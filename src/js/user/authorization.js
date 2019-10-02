@@ -1,14 +1,9 @@
-const currentUser = require('./store')
-const tokenGlobal = require('./service/token')
-const draw = require('./draw')
-const drawBlocks = require('./draw.blocks')
-// const  drawBlocks = {
-//   info: document.getElementById('loginData'),
-//   list: document.getElementById('task_list').innerHTML,
-//   counter: document.getElementById('taskCounter').innerHTML
-// }
-const counter = require('./user/counter')
-const address = require('./service/_address')
+const currentUser = require('../store')
+const tokenGlobal = require('../service/token')
+const draw = require('../draw')
+const drawBlocks = require('../draw.blocks')
+const counter = require('./counter')
+const address = require('../service/_address')
 
 const authorize = () => {  
   let user = {
@@ -22,8 +17,10 @@ const authorize = () => {
 
   fetch(address + '/api/login' + query)
     .then(res => {
-      if (res.status === 401)
+      if (res.status === 401){
+        drawBlocks.loginPrompt.innerHTML = "User doesn't exist. Register!"
         return false
+      }
       return res.json()
     })
     .then(token => {
@@ -77,8 +74,6 @@ const getCurrentUserTasks = async (token) => {
     .then(tasks => { return tasks })
     .catch(err => { console.log(err) })
 }
-
-
 
 module.exports = {
   authorize,
