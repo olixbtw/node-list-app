@@ -1,7 +1,8 @@
 const tokenGlobal = require('./../service/token')
 const address = require('./../service/_address')
-const login = require('./../user/authorization')
+const login = require('./authorization')
 const drawBlocks = require('./../draw/draw.blocks')
+const Tasks = require('./../task/task')
 
 const addUser = () => {
   let user = {
@@ -40,13 +41,14 @@ const addUser = () => {
 const deleteUser = () => {
   fetch(address + '/api/users', {
     method: 'DELETE',
-    headers: {
-      'authorization': tokenGlobal.get()
-    }
+    headers: { 'authorization': tokenGlobal.get() }
   })
     .then(res => res.json())
     .then(() => {
-      login.logOut()
+      //delete user's tasks
+      Tasks.deleteUsersTasks().then(
+        login.logOut()
+      )
     })
     .catch(err => { console.log(err) })
 }

@@ -38,6 +38,12 @@ router.put('/tasks/:id', (req, res) => {
   // res.send('updated')
 })
 
+router.delete('/tasks', (req, res) => {
+  List.removeUsersTasks({ userId: req.user._id })
+    .then(thisTasks => { res.json(thisTasks) })
+    .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
+})
+
 //service - delete all tasks
 router.delete('/tasks/clear', (req, res) => {
   //delete user's tasks

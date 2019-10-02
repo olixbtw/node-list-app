@@ -32,6 +32,7 @@ module.exports.getTask = (id) => List.findById(id).exec();
 
 module.exports.removeTask = (id) => List.findById(id).deleteMany().exec();
 module.exports.removeAllTasks = (filter) => List.find(filter).deleteMany().exec();
+module.exports.removeUsersTasks = (filter) => List.find(filter).deleteMany().exec();
 
 module.exports.updateCompleted = (filter, completedValue) => List.updateMany(filter, { completed: completedValue });
 

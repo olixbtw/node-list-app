@@ -48,7 +48,6 @@ const authorize = () => {
 }
 
 const logIn = () => {
-  currentUser.logged = true;
   draw.clear()
 
   getCurrentUserData(tokenGlobal.get()).then(data => {
@@ -66,7 +65,6 @@ const logIn = () => {
 }
 
 const logOut = () => {
-  currentUser.logged = false;
   document.body.removeAttribute('class');
   tokenGlobal.remove()
 }

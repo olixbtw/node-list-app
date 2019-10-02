@@ -55,6 +55,17 @@ const toggleTaskComplete = () => {
   }
 }
 
+const deleteUsersTasks = async () => {
+  return await fetch(address + '/api/tasks', {
+  // fetch(address + '/api/tasks', {
+    method: 'DELETE',
+    headers: { 'authorization': tokenGlobal.get() }
+  })
+    .then(res => res.json())
+    // .then(data => await data)
+    .catch(err => { console.log(err) })
+}
+
 const deleteTask = (taskId) => {
   if (event.target.parentElement.nodeName === "LI") {
     if (event.target.nodeName === "BUTTON" && event.target.innerText === "Delete") {
@@ -84,5 +95,6 @@ module.exports = {
   addTask,
   deleteTask,
   toggleTaskComplete,
-  getCurrentTasks
+  getCurrentTasks,
+  deleteUsersTasks
 }
