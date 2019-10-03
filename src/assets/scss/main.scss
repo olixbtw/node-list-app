@@ -30,3 +30,14 @@ body {
 section {
   padding: 3rem 0;
 }
+
+// 
+
+section.test{
+  ul{
+    .done{
+      color: grey;
+      text-decoration: line-through;
+    }
+  }
+}
