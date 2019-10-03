@@ -35,6 +35,10 @@ button {
   color: $neutral-primary;
   background: $default-color;
 
+  &.small {
+    font-size: 0.9rem;
+    padding: 0.15rem 0.25rem;
+  }
   &.default {
     border-color: $primary-color;
     color: $neutral-primary;

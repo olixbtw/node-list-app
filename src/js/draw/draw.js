@@ -9,9 +9,9 @@ const clearData = () => {
 
 const generateInfo = (userData) => {
   return `
-    username - ${userData['username']}<br>
-    password - ${userData['password']}<br>
-    id - ${userData['_id']}<br>
+    <div><button class="small">Edit</button><span>username</span> - <span id="username">${userData['username']}</span></div>
+    <div><button class="small">Edit</button><span>password</span> - <span id="password">${userData['password']}</span></div>
+    <div>                                   <span>id</span>       - <span id="userInfo_id">${userData['_id']}</span></div>
   `
 }
 
@@ -31,11 +31,11 @@ const generateList = (userList) => {
 const generateListItem = (item) => {
   return `
     <li id="${item._id}" class="task-item ${item.completed ? 'done' : ''}">
-    <button>Delete</button>
+    <button class="small edit">Edit</button>
+    <button class="small">Delete</button>
     ${item.text}
     <span class="date">${item.createdDate}</span>
     </li>  `
-  // <button onclick='editTask("${item._id}")'>Edit</button>
 }
 
 module.exports = {

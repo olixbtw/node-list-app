@@ -43,7 +43,7 @@ const deleteUser = () => {
     method: 'DELETE',
     headers: { 'authorization': tokenGlobal.get() }
   })
-    .then(res => res.json())
+    // .then(res => res.json())
     .then(() => {
       //delete user's tasks
       Tasks.deleteUsersTasks().then(
@@ -53,7 +53,28 @@ const deleteUser = () => {
     .catch(err => { console.log(err) })
 }
 
+const updateUser = (key, value) => {
+  fetch(address + '/api/users', {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': tokenGlobal.get()
+    },
+    body: JSON.stringify({
+      val: value,
+      key: key,
+    })
+
+  })
+    // .then(res => res.json())
+    .then(()=> {
+      document.getElementById(key).innerText = value
+    })
+    .catch(err => { console.log(err) })
+}
+
 module.exports = {
   addUser,
-  deleteUser
+  deleteUser,
+  updateUser
 }

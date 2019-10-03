@@ -14,6 +14,10 @@ module.exports.getUserById = (id) => User.findById(id).exec();
 module.exports.removeAllUsers = (filter) => User.find(filter).deleteMany().exec();
 module.exports.removeUser = (id) => User.findById(id).deleteOne().exec();
 
+// module.exports.updateUser = (id) => User.findById(id).deleteOne().exec();
+module.exports.updateUser = (filter, update) => User.updateMany(filter, update);
+
+
 module.exports.addUser = (name, pass) => new User({
   username: name,
   password: pass

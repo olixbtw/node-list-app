@@ -38,16 +38,15 @@
 
         <div class="logged_info-block">
           <h3>Account info:</h3>
- 
+
           <ul>
-            
+
           </ul>
 
           <div id="loginData">DATA HERE</div>
           <div id="taskCounter">DATA HERE</div>
 
           <button id="buttonDeleteUser" class="regular">Delete User</button>
-          <button id="buttonEditUser">Edit User</button>
         </div>
 
         <div class="new_task-block">
@@ -61,6 +60,16 @@
           </ol>
         </div>
       </section>
+    </div>
+    
+    <div id="ModalWindow" class="ModalWindow">
+      <div class="modalInner">
+        <div class="modalText"></div>
+        <textarea></textarea>
+        <button id="buttonModalClose" class="default">Cancel</button>
+        <button id="buttonModalSave">Save</button>
+
+      </div>
     </div>
 
   </div>
@@ -98,7 +107,8 @@
           <br>
           <li class=done>User is able to register account in the system</li>
           <li class=done>User is able to login into the system</li>
-          <li class=done style="color:green">User can delete his account, view account info, update account info when logged in</li>
+          <li class=done style="color:green">User can delete his account, view account info, update account info when
+            logged in</li>
           <li>User can see other users in system and their notes count</li>
           <li class=done style="color:darkgoldenrod">User can see only personal notes</li>
           <li class=done style="color:green">User can create, view, update, delete personal notes</li>
