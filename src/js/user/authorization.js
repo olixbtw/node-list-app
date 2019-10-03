@@ -11,7 +11,7 @@ const authorize = () => {
     password: document.getElementById('login_pass').value
   };
 
-  if (user.username & user.password) {
+  if (!!user.username & !!user.password) {
 
     let query = '?'
     query += 'username=' + user.username + '&'
@@ -43,7 +43,6 @@ const authorize = () => {
     if (user.password) {
       drawBlocks.loginPrompt.innerHTML = "What is your name?"
     }
-    
   }
 }
 

@@ -10,7 +10,7 @@ const addUser = () => {
     password: document.getElementById('login_pass').value
   };
 
-  if (user.username & user.password)
+  if (!!user.username & !!user.password)
     fetch(address + '/api/users', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },

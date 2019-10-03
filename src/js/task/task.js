@@ -22,7 +22,6 @@ const addTask = () => {
       .then(data => {
         if (currentUser.tasks.length === 0)
           drawBlocks.list.innerHTML = ''
-        console.log(drawBlocks)
         drawBlocks.list.innerHTML += draw.item(data)
         currentUser.tasks.push(data)
         counter.update()
@@ -57,7 +56,7 @@ const toggleTaskComplete = () => {
 
 const deleteUsersTasks = async () => {
   return await fetch(address + '/api/tasks', {
-  // fetch(address + '/api/tasks', {
+    // fetch(address + '/api/tasks', {
     method: 'DELETE',
     headers: { 'authorization': tokenGlobal.get() }
   })
