@@ -1,15 +1,15 @@
-### Build Setup:
-# Install dependencies:
+# Build Setup:
+## Install dependencies:
 npm install
 
 ## Launch app:
-# Server with hot reload at http://localhost:8080/
+### Server with hot reload at http://localhost:8080/
 npm run server
-# Output will be at build/ folder
+### Output will be at build/ folder
 npm run build
 
 ## Development:
-# Client with hot reload at http://localhost:8081/
+### Client with hot reload at http://localhost:8081/
 npm run dev
 
 - to run a proper dev version, change "src/js/service/_address.js"
