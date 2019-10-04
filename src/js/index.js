@@ -18,6 +18,7 @@ addClick(login.logOut, 'buttonLogout')
 
 addClick(User.add, 'buttonAddUser')
 addClick(User.delete, 'buttonDeleteUser')
+addClick(User.dispalyAll, 'allUsersInfo')
 
 addClick(Task.add, 'buttonAddTask')
 addClick(Task.getCurrentTasks, 'buttonGetCurrentTasks')
@@ -30,7 +31,3 @@ addClick(Task.toggleTaskComplete, 'task_list')
 
 addClick(modal.close, 'buttonModalClose')
 addClick(modal.save, 'buttonModalSave')
-
-
-addClick(allUsersInfo, 'allUsersInfo')
-function allUsersInfo() { console.log('get info of all users') }

@@ -5,6 +5,8 @@ const clearData = () => {
   block.list.innerHTML = ''
   block.counter.innerHTML = ''
   block.loginPrompt.innerHTML = ''
+  block.allUsers.innerHTML = ''
+  block.allUsers.parentElement.classList.add('hidden')
 }
 
 const generateInfo = (userData) => {
@@ -39,9 +41,16 @@ const generateListItem = (item) => {
   `
 }
 
+const generateAllUsers = (arr) => {
+  return arr.map(item => `
+    <li>User ${item.user} has ${item.itemQ} notes</li>
+  `).join('')
+}
+
 module.exports = {
   clear: clearData,
   item: generateListItem,
   list: generateList,
-  info: generateInfo
+  info: generateInfo,
+  allUsers: generateAllUsers
 }

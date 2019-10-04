@@ -17,6 +17,24 @@ router.get('/users', (req, res) => {
   }
 });
 
+router.get('/users/tasks', (req, res) => {
+  Users.getUsers()
+    .then(users => {
+      let promiseArr = users.map(currentUser => List.getTasks({ userId: currentUser._id }))
+      Promise.all(promiseArr)
+        .then(val => {
+          val = val.map((item, index) => {
+            return {
+              user: users[index].username,
+              itemQ: item.length
+            }
+          })
+          res.json(val)
+        })
+    })
+    .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, users: {}, error_text: err.message }) });
+})
+
 router.post('/users', (req, res) => {
   //check if user is unique
   Users.addUser(req.body.username, req.body.password)
@@ -57,13 +75,5 @@ router.delete('/users/clear', (req, res) => {
     .then(data => res.json(data))
     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
 })
-
-//strictly after /clear
-
-// router.get('/users/:id', (req, res) => {
-//   Users.getUserById(req.params.id)
-//     .then(user => { res.json(user) })
-//     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
-// });
 
 module.exports = router;

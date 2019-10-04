@@ -2,6 +2,7 @@ const tokenGlobal = require('./../service/token')
 const address = require('./../service/_address')
 const login = require('./authorization')
 const drawBlocks = require('./../draw/draw.blocks')
+const draw = require('./../draw/draw')
 const Tasks = require('./../task/task')
 
 const addUser = () => {
@@ -73,8 +74,24 @@ const updateUser = (key, value) => {
     .catch(err => { console.log(err) })
 }
 
+const allUsersInfo = () => {
+  fetch(address + '/api/users/tasks')
+    .then(res => res.json())
+    .then(data => {
+      drawBlocks.allUsers.parentElement.classList.remove('hidden')
+      drawBlocks.allUsers.innerHTML = draw.allUsers(data)
+    })
+    .catch(err => { console.log(err) })
+}
+
+// const allUsersInfoHide = () => {
+//   drawBlocks.allUsers.parentElement.classList.add('hidden')
+// }
+
 module.exports = {
   add: addUser,
   delete: deleteUser,
-  update: updateUser
+  update: updateUser,
+  dispalyAll: allUsersInfo,
+  // hideAll: allUsersInfoHide
 }
