@@ -24,7 +24,9 @@ body.loggedIn section.login {
   display: none;
 }
 
-body.loggedIn section.account,
 body.loggedIn #buttonLogout {
+  display: inline-block;
+}
+body.loggedIn section.account {
   display: block;
 }

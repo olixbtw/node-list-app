@@ -23,13 +23,13 @@ addClick(Task.add, 'buttonAddTask')
 addClick(Task.getCurrentTasks, 'buttonGetCurrentTasks')
 
 //#task_list event order is important
-addClick(modalInit, 'task_list')
+addClick(modal.init, 'task_list')
+addClick(modal.init, 'loginData')
 addClick(Task.delete, 'task_list')
 addClick(Task.toggleTaskComplete, 'task_list')
 
 addClick(modal.close, 'buttonModalClose')
 addClick(modal.save, 'buttonModalSave')
-addClick(modal.init, 'loginData')
 
 
 addClick(allUsersInfo, 'allUsersInfo')

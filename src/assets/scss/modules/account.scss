@@ -3,13 +3,20 @@
 
 section.account {
   display: none;
+
+  @media (min-width: $smDesktopWidth + 1px) {
+    padding-right: 20rem;
+  }
 }
 
 .add_task-block {
-  textarea {
-    resize: none;
-    min-width: 20rem;
-    height: 7rem;
+  display: flex;
+  button {
+    flex-shrink: 0;
+  }
+  input {
+    flex-shrink: 1;
+    display: inline-block;
   }
 }
 

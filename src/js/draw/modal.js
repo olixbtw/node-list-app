@@ -9,12 +9,12 @@ const modalInit = () => {
     event.stopImmediatePropagation()
     if (event.target.parentElement.parentElement.id === 'loginData') {
       //edit user info
-      let elem = event.target.parentElement.getElementsByTagName('span')[1]
-      modal.open(elem.innerText, elem.id, 'user')
+      let elem = event.target.parentElement.getElementsByClassName('data')[0]
+      modalOpen(elem.innerText, elem.id, 'user')
     }
     if (event.target.parentElement.nodeName === "LI") {
       let elem = event.target.parentElement
-      modal.open(elem.getElementsByTagName('div')[0].innerText, elem.id, 'task')
+      modalOpen(elem.getElementsByTagName('div')[0].innerText, elem.id, 'task')
     }
   }
 }

@@ -9,9 +9,9 @@ const clearData = () => {
 
 const generateInfo = (userData) => {
   return `
-    <div><button class="small">Edit</button><span>username</span> - <span id="username">${userData['username']}</span></div>
-    <div><button class="small">Edit</button><span>password</span> - <span id="password">${userData['password']}</span></div>
-    <div>                                   <span>id</span>       - <span id="userInfo_id">${userData['_id']}</span></div>
+    <li><button class="small">Edit</button><span>username:</span><span class="data" id="username">${userData['username']}</span></li>
+    <li><button class="small">Edit</button><span>password:</span><span class="data" id="password">${userData['password']}</span></li>
+    <li>                                   <span>id:</span><span class="data" id="userInfo_id">${userData['_id']}</span></li>
   `
 }
 
