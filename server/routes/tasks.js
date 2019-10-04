@@ -25,10 +25,8 @@ router.post('/tasks', (req, res) => {
 });
 
 router.put('/tasks/:id', (req, res) => {
-  console.log(req.params.id)
   List.getTask(req.params.id)
     .then(thisTask => {
-      console.log(thisTask)
       List.updateTask({ _id: req.params.id }, { completed: !thisTask.completed })
         .then(() => { res.send() })
         .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
@@ -36,11 +34,9 @@ router.put('/tasks/:id', (req, res) => {
 })
 
 router.put('/tasks', (req, res) => {
-  console.log('PUT')
   if (req.user) {
     let change = {}
     change[req.body.key] = req.body.val
-    console.log(change)
     List.updateTask({ _id: req.body.id }, change)
       .then(() => { res.send() })
       .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
@@ -48,7 +44,7 @@ router.put('/tasks', (req, res) => {
 });
 
 router.delete('/tasks', (req, res) => {
-  List.removeUsersTasks({ userId: req.user._id })
+  List.removeAllTasks({ userId: req.user._id })
     .then(thisTasks => { res.json(thisTasks) })
     .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
 })

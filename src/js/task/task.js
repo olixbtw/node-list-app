@@ -46,27 +46,24 @@ const toggleTaskComplete = () => {
       headers: { 'authorization': tokenGlobal.get() }
     })
       // .then(res => res.json())
-      .then(() => {
-        evt.classList.toggle('done')
-      })
+      .then(() => { evt.classList.toggle('done') })
       .catch(err => { console.log(err) })
   }
 }
 
 const deleteUsersTasks = async () => {
   return await fetch(address + '/api/tasks', {
-    // fetch(address + '/api/tasks', {
     method: 'DELETE',
     headers: { 'authorization': tokenGlobal.get() }
   })
     .then(res => res.json())
-    // .then(data => await data)
     .catch(err => { console.log(err) })
 }
 
 const deleteTask = () => {
   if (event.target.parentElement.nodeName === "LI") {
     if (event.target.nodeName === "BUTTON" && event.target.innerText === "Delete") {
+      event.stopImmediatePropagation()
 
       let evt = event;
       let taskId = evt.target.parentElement.id
@@ -76,7 +73,6 @@ const deleteTask = () => {
       })
         // .then(res => res.json())
         .then(() => {
-
           currentUser.tasks = currentUser.tasks.filter(item => item._id !== evt.target.parentElement.id)
           evt.target.parentElement.remove()
           counter.update()
@@ -84,13 +80,11 @@ const deleteTask = () => {
             draw.list([])
         })
         .catch(err => { console.log(err) })
-      evt.stopPropagation()
     }
   }
 }
 
 const updateTask = (taskId, taskText) => {
-  console.log('task - updateTask')
   fetch(address + '/api/tasks', {
     method: "PUT",
     headers: {
@@ -114,8 +108,8 @@ const updateTask = (taskId, taskText) => {
 module.exports = {
   add: addTask,
   delete: deleteTask,
+  update: updateTask,
   toggleTaskComplete,
   getCurrentTasks,
-  deleteUsersTasks,
-  updateTask
+  deleteUsersTasks
 }

@@ -67,14 +67,14 @@ const updateUser = (key, value) => {
 
   })
     // .then(res => res.json())
-    .then(()=> {
+    .then(() => {
       document.getElementById(key).innerText = value
     })
     .catch(err => { console.log(err) })
 }
 
 module.exports = {
-  addUser,
-  deleteUser,
-  updateUser
+  add: addUser,
+  delete: deleteUser,
+  update: updateUser
 }

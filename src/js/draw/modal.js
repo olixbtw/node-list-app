@@ -4,6 +4,21 @@ const Task = require('./../task/task')
 let editableId = ''
 let edtiableType = ''
 
+const modalInit = () => {
+  if (event.target.nodeName === "BUTTON" && event.target.innerText === "Edit") {
+    event.stopImmediatePropagation()
+    if (event.target.parentElement.parentElement.id === 'loginData') {
+      //edit user info
+      let elem = event.target.parentElement.getElementsByTagName('span')[1]
+      modal.open(elem.innerText, elem.id, 'user')
+    }
+    if (event.target.parentElement.nodeName === "LI") {
+      let elem = event.target.parentElement
+      modal.open(elem.getElementsByTagName('div')[0].innerText, elem.id, 'task')
+    }
+  }
+}
+
 const modalOpen = (content, id, type) => {
   editableId = id;
   edtiableType = type;
@@ -25,10 +40,10 @@ const modalSave = () => {
 
   switch (edtiableType) {
     case 'user':
-      User.updateUser(editableId, newValue)
+      User.update(editableId, newValue)
       break
     case 'task':
-      Task.updateTask(editableId, newValue)
+      Task.update(editableId, newValue)
       break
     default:
       console.error('other type')
@@ -42,5 +57,6 @@ const modalSave = () => {
 module.exports = {
   open: modalOpen,
   close: modalClose,
-  save: modalSave
+  save: modalSave,
+  init: modalInit
 }
