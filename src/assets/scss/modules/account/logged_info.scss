@@ -1,21 +1,17 @@
 .logged_info-block {
-  max-width: 20rem;
+  // max-width: 20rem;
+  background: $default-color;
+  width: 20rem;
   border-radius: 0.5rem;
   border: 0.2rem solid $primary-color;
   padding: 2rem;
   margin-bottom: 2rem;
 
-  @media (min-width: $smDesktopWidth + 1px) {
-    position: fixed;
-    right: 10%;
-    top: 9rem;
-  }
-
+  display: flex;
+  flex-direction: column;
   #taskCounter {
     margin-top: 0.75rem;
   }
-  display: flex;
-  flex-direction: column;
   > button {
     opacity: 0.5;
     margin-left: auto;
@@ -24,10 +20,10 @@
       opacity: 0.9;
     }
   }
-  &::after {
-    content: "";
-    display: table;
-    clear: both;
+  @media (min-width: $smDesktopWidth + 1px) {
+    position: fixed;
+    right: 10%;
+    top: 9rem;
   }
 }
 
@@ -64,7 +60,7 @@
       margin-left: auto;
       opacity: 0.5;
       &:hover {
-        opacity: .8;
+        opacity: 0.8;
       }
     }
   }

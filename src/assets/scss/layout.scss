@@ -1,3 +1,10 @@
+@import "modules/footer";
+@import "modules/header";
+
+@import "modules/account/account";
+@import "modules/login/login";
+@import "modules/modal";
+
 .wrapper {
   min-height: 100vh;
   display: flex;

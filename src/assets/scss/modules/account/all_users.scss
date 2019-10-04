@@ -1,0 +1,23 @@
+.all_users-block {
+  @extend .logged_info-block;
+  @media (min-width: $smDesktopWidth + 1px) {
+    top: 30rem;
+    // bottom: 2rem;
+    max-height: calc(100vh - 35rem);
+    overflow-y: auto;
+  }
+  margin-bottom: 0;
+  margin-top: 2rem;
+
+  ul {
+    padding: 0;
+    margin: 0;
+    padding-left: 1.25rem;
+    li {
+      margin-bottom: 0.25rem;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

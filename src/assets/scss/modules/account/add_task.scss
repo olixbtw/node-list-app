@@ -1,0 +1,10 @@
+.add_task-block {
+  display: flex;
+  button {
+    flex-shrink: 0;
+  }
+  input {
+    flex-shrink: 1;
+    display: inline-block;
+  }
+}

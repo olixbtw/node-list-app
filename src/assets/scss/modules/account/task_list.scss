@@ -1,24 +1,3 @@
-@import "user";
-// account style
-
-section.account {
-  display: none;
-
-  @media (min-width: $smDesktopWidth + 1px) {
-    padding-right: 20rem;
-  }
-}
-
-.add_task-block {
-  display: flex;
-  button {
-    flex-shrink: 0;
-  }
-  input {
-    flex-shrink: 1;
-    display: inline-block;
-  }
-}
 
 .task_list-block {
   ol,

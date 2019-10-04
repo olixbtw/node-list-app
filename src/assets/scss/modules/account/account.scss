@@ -1,0 +1,13 @@
+@import "add_task";
+@import "logged_info";
+@import "task_list";
+@import "all_users";
+// account style
+
+section.account {
+  display: none;
+
+  @media (min-width: $smDesktopWidth + 1px) {
+    padding-right: 20rem;
+  }
+}
