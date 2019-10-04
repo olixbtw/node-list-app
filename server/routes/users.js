@@ -32,23 +32,10 @@ router.post('/users', (req, res) => {
 
 router.put('/users', (req, res) => {
   if (req.user) {
-    console.log(req.body)
-    console.log(req.body.val)
-    console.log(req.body.key)
     let change = {}
     change[req.body.key] = req.body.val
-    console.log(change)
     Users.updateUser({ _id: req.user._id }, change)
-      .then(newUser => {
-        console.log(newUser)
-        res.json(newUser)
-
-        // let query = '?'
-        // query += 'username=' + newUser.username + '&'
-        // query += 'password=' + newUser.password + '&'
-
-        // res.redirect('login/' + query);
-      })
+      .then(() => { res.send() })
       .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
   }
 });

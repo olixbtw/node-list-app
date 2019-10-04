@@ -39,16 +39,15 @@ const getCurrentTasks = () => {
 }
 
 const toggleTaskComplete = () => {
-  if (event.target.nodeName === "LI") {
-    let evt = event;
-    let taskId = evt.target.id
-    fetch(address + '/api/tasks/' + taskId + '?compl=true', {
+  if (event.target.nodeName === "DIV" || event.target.parentNode.nodeName === "LI") {
+    let evt = event.target.parentNode;
+    fetch(address + '/api/tasks/' + evt.id, {
       method: "PUT",
       headers: { 'authorization': tokenGlobal.get() }
     })
       // .then(res => res.json())
       .then(() => {
-        evt.target.classList.toggle('done')
+        evt.classList.toggle('done')
       })
       .catch(err => { console.log(err) })
   }
@@ -65,13 +64,13 @@ const deleteUsersTasks = async () => {
     .catch(err => { console.log(err) })
 }
 
-const deleteTask = (taskId) => {
+const deleteTask = () => {
   if (event.target.parentElement.nodeName === "LI") {
     if (event.target.nodeName === "BUTTON" && event.target.innerText === "Delete") {
 
       let evt = event;
       let taskId = evt.target.parentElement.id
-      fetch(address + '/api/tasks/' + taskId + '?compl=true', {
+      fetch(address + '/api/tasks/' + taskId, {
         method: "DELETE",
         headers: { 'authorization': tokenGlobal.get() }
       })
@@ -90,35 +89,26 @@ const deleteTask = (taskId) => {
   }
 }
 
-const modal = require('./../draw/modal')
-
-const startUpdate = () => {
-  //   if (event.target.parentElement.nodeName === "LI") {
-  //     if (event.target.nodeName === "BUTTON" && event.target.innerText === "Edit") {
-
-  //       console.log(event.target)
-  //       // send to modal: id + content to edit + request type (info/task)
-  //       modal.open('task','id', 'task')
-
-  //       evt.stopPropagation()
-  //     }
-  //   }
-  console.log('task - startUpdate')
-}
-
-const updateTask = (taskId, text) => {
-  //   fetch(address + '/api/tasks' + taskId, {
-  //     method: "PUT",
-  //     headers: { 'authorization': tokenGlobal.get() },
-  //     body: { text: text }
-  //   })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       console.log(data)
-  //       document.getElementById(taskID).innerText = text
-  //     })
-  //     .catch(err => { console.log(err) })
+const updateTask = (taskId, taskText) => {
   console.log('task - updateTask')
+  fetch(address + '/api/tasks', {
+    method: "PUT",
+    headers: {
+      'Content-Type': 'application/json',
+      'authorization': tokenGlobal.get()
+    },
+    body: JSON.stringify({
+      val: taskText,
+      id: taskId,
+      key: 'text',
+    })
+
+  })
+    // .then(res => res.json())
+    .then(() => {
+      document.getElementById(taskId).getElementsByTagName('div')[0].innerText = taskText
+    })
+    .catch(err => { console.log(err) })
 }
 
 module.exports = {
@@ -127,8 +117,5 @@ module.exports = {
   toggleTaskComplete,
   getCurrentTasks,
   deleteUsersTasks,
-  update: {
-    startUpdate,
-    updateTask
-  }
+  updateTask
 }

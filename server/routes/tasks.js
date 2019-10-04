@@ -25,18 +25,27 @@ router.post('/tasks', (req, res) => {
 });
 
 router.put('/tasks/:id', (req, res) => {
-  if (req.query.compl) {
-    List.getTask(req.params.id)
-      .then(thisTask => {
-        List.updateCompleted({ _id: req.params.id }, !thisTask.completed)
-          .then(newTask => {
-            res.json(newTask)
-          })
-          .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
-      })
-  }
-  // res.send('updated')
+  console.log(req.params.id)
+  List.getTask(req.params.id)
+    .then(thisTask => {
+      console.log(thisTask)
+      List.updateTask({ _id: req.params.id }, { completed: !thisTask.completed })
+        .then(() => { res.send() })
+        .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
+    })
 })
+
+router.put('/tasks', (req, res) => {
+  console.log('PUT')
+  if (req.user) {
+    let change = {}
+    change[req.body.key] = req.body.val
+    console.log(change)
+    List.updateTask({ _id: req.body.id }, change)
+      .then(() => { res.send() })
+      .catch(err => { res.status(httpStatuses.SERVER_ERROR).json({ status: statuses.failure, user: {}, error_text: err.message }) });
+  }
+});
 
 router.delete('/tasks', (req, res) => {
   List.removeUsersTasks({ userId: req.user._id })

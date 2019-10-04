@@ -1,8 +1,5 @@
 const User = require('./../user/user')
-// const Task = require('./../task/task')
-
-console.log(User)
-
+const Task = require('./../task/task')
 
 let editableId = ''
 let edtiableType = ''
@@ -18,20 +15,12 @@ const modalOpen = (content, id, type) => {
 }
 
 const modalClose = () => {
-  console.log('close')
   //reset modal
   document.getElementById('ModalWindow').classList.remove('active')
   document.getElementsByClassName('modalText')[0].innerHTML = ''
 }
 
 const modalSave = () => {
-  console.log('save')
-  console.log(edtiableType)
-  console.log(editableId)
-  console.log(
-    document.getElementById('ModalWindow').getElementsByTagName('textarea')[0].value
-  )
-
   let newValue = document.getElementById('ModalWindow').getElementsByTagName('textarea')[0].value
 
   switch (edtiableType) {
@@ -39,7 +28,7 @@ const modalSave = () => {
       User.updateUser(editableId, newValue)
       break
     case 'task':
-      console.log(edtiableType)
+      Task.updateTask(editableId, newValue)
       break
     default:
       console.error('other type')

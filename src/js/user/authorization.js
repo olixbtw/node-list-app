@@ -48,6 +48,8 @@ const authorize = () => {
 
 const logIn = () => {
   draw.clear()
+  document.getElementById('login_name').value = '';
+  document.getElementById('login_pass').value = '';
 
   getCurrentUserData(tokenGlobal.get()).then(data => {
     drawBlocks.info.innerHTML = draw.info(data)

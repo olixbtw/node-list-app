@@ -31,11 +31,12 @@ const generateList = (userList) => {
 const generateListItem = (item) => {
   return `
     <li id="${item._id}" class="task-item ${item.completed ? 'done' : ''}">
-    <button class="small edit">Edit</button>
-    <button class="small">Delete</button>
-    ${item.text}
-    <span class="date">${item.createdDate}</span>
-    </li>  `
+      <button class="small edit">Edit</button>
+      <button class="small">Delete</button>
+      <div>${item.text}</div>
+      <span class="date">${item.createdDate}</span>
+    </li>  
+  `
 }
 
 module.exports = {
